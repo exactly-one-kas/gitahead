@@ -879,6 +879,7 @@ void MenuBar::updateBranch()
   mRebase->setEnabled(head.isValid());
 
   bool merging = false;
+  bool rebasing = false;
   QString text = tr("Merge");
   if (view) {
     switch (view->repo().state()) {
@@ -902,13 +903,13 @@ void MenuBar::updateBranch()
       case GIT_REPOSITORY_STATE_REBASE_INTERACTIVE:
       case GIT_REPOSITORY_STATE_REBASE_MERGE:
         text = tr("Rebase");
+        rebasing = true;
         break;
     }
   }
 
-  git::Branch headBranch = head;
   mAbort->setText(tr("Abort %1").arg(text));
-  mAbort->setEnabled(headBranch.isValid() && merging);
+  mAbort->setEnabled(merging || rebasing);
 }
 
 void MenuBar::updateSubmodules()

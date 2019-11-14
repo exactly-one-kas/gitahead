@@ -1367,8 +1367,17 @@ void RepoView::mergeAbort(LogEntry *parent)
   }
 
   int state = mRepo.state();
-  if (!commit.reset(GIT_RESET_HARD, paths.toList()))
+  git::Rebase rebase = mRepo.activeRebase();
+
+  if (mRepo.isRebasing() && (!rebase.isValid() || !rebase.abort()))
+  {
+    LogEntry *parent = addLogEntry(tr("rebase"), tr("Abort"));
+    error(parent, tr("abort rebase"));
     return;
+  }
+  else if (!commit.reset(GIT_RESET_HARD, paths.toList())) {
+    return;
+  }
 
   QString text = tr("merge");
   switch (state) {
@@ -1439,9 +1448,10 @@ void RepoView::rebase(
     git::Commit after = rebase.commit();
     if (!after.isValid()) {
       // Rebase conflicted.
+      checkForConflicts(parent, tr("rebase"));
       entry->addEntry(LogEntry::Error,
         tr("There was a merge conflict. The rebase has been aborted"));
-      rebase.abort();
+      // rebase.abort();
       return;
     }
 

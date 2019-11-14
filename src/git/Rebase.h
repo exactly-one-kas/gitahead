@@ -29,7 +29,7 @@ public:
   Commit next();
   Commit commit();
 
-  void abort();
+  bool abort();
   bool finish();
 
 private:

@@ -189,6 +189,8 @@ public:
   Commit mergeBase(const Commit &lhs, const Commit &rhs) const;
   bool merge(const AnnotatedCommit &mergeHead);
   Rebase rebase(const AnnotatedCommit &mergeHead);
+  Rebase activeRebase() const;
+  bool isRebasing() const;
 
   // cherry-pick
   bool cherryPick(const Commit &commit);

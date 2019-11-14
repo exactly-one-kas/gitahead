@@ -69,13 +69,15 @@ Commit Rebase::commit()
   return Commit(commit);
 }
 
-void Rebase::abort()
+bool Rebase::abort()
 {
   Repository repo(mRepo);
   int state = repo.state();
-  git_rebase_abort(d.data());
+  bool success = git_rebase_abort(d.data()) == 0;
   if (repo.state() != state)
     emit repo.notifier()->stateChanged();
+
+  return success;
 }
 
 bool Rebase::finish()

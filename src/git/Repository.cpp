@@ -863,6 +863,27 @@ Rebase Repository::rebase(const AnnotatedCommit &mergeHead)
   return Rebase(d->repo, rebase);
 }
 
+Rebase Repository::activeRebase() const
+{
+  git_rebase *rebase = nullptr;
+  git_rebase_options opts = GIT_REBASE_OPTIONS_INIT;
+  git_rebase_open(&rebase, d->repo, &opts);
+  return Rebase(d->repo, rebase);
+}
+
+bool Repository::isRebasing() const
+{
+  switch(state()) {
+    case GIT_REPOSITORY_STATE_REBASE:
+    case GIT_REPOSITORY_STATE_REBASE_INTERACTIVE:
+    case GIT_REPOSITORY_STATE_REBASE_MERGE:
+      return true;
+
+    default:
+      return false;
+  }
+}
+
 bool Repository::cherryPick(const Commit &commit)
 {
   int current = state();
