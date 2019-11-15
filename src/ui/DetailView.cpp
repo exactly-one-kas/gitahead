@@ -239,7 +239,6 @@ public:
     details->addWidget(mAuthorDate);
     details->addLayout(line2);
     details->addLayout(line3);
-    details->addStretch();
 
     mPicture = new QLabel(this);
 
@@ -520,7 +519,6 @@ public:
 
     QVBoxLayout *buttonLayout = new QVBoxLayout;
     buttonLayout->setContentsMargins(0,8,12,0);
-    buttonLayout->addStretch();
     buttonLayout->addWidget(mStage);
     buttonLayout->addWidget(mUnstage);
     buttonLayout->addWidget(mCommit);
