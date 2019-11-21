@@ -47,12 +47,10 @@ QString keyFile()
     if (!file.isAbsolute())
       file.setFile(dir.absolutePath() + '/' + file.filePath());
     
-    if (file.exists()) {
-      key = file.absoluteFilePath();
-      return true;
-    } else {
-      return false;
-    }
+    if (file.exists())
+      return file.absoluteFilePath();
+    else
+      return "";
   }
 
   if (!dir.cd(".ssh"))
