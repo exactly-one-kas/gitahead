@@ -259,6 +259,7 @@ public:
             MenuBar::instance(this), &MenuBar::updateCutCopyPaste);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setContentsMargins(12, 8, 0, 0);
     layout->addLayout(header);
     layout->addWidget(mSeparator);
     layout->addWidget(mMessage);
@@ -726,8 +727,15 @@ ContentWidget::~ContentWidget() {}
 DetailView::DetailView(const git::Repository &repo, QWidget *parent)
   : QWidget(parent)
 {
-  QHBoxLayout *layout = new QHBoxLayout(this);
+  QVBoxLayout *layout = new QVBoxLayout(this);
   layout->setContentsMargins(0,0,0,0);
+
+  mAuthorLabel = new QLabel(this);
+  mAuthorLabel->setTextFormat(Qt::TextFormat::RichText);
+  mAuthorLabel->setContentsMargins(12, 8, 0, 0);
+  connect(mAuthorLabel, &QLabel::linkActivated, this, &DetailView::authorLinkActivated);
+  updateAuthor();
+  layout->addWidget(mAuthorLabel);
 
   QSplitter *splitter = new QSplitter(this);
   splitter->setHandleWidth(0);
@@ -738,12 +746,6 @@ DetailView::DetailView(const git::Repository &repo, QWidget *parent)
   layout->addWidget(splitter);
   splitter->setContentsMargins(0,0,0,0);
   splitter->setOrientation(Qt::Vertical);
-
-  mAuthorLabel = new QLabel(this);
-  mAuthorLabel->setTextFormat(Qt::TextFormat::RichText);
-  connect(mAuthorLabel, &QLabel::linkActivated, this, &DetailView::authorLinkActivated);
-  updateAuthor();
-  layout->addWidget(mAuthorLabel);
 
   mDetail = new StackedWidget(this);
   mDetail->setVisible(false);
