@@ -126,6 +126,8 @@ public:
     mSingleInstance = new QCheckBox(
       tr("Only allow a single running instance"), this);
 
+    mTerminalCommand = new QLineEdit(this);
+
     QFormLayout *form = new QFormLayout;
     form->addRow(tr("User name:"), mName);
     form->addRow(tr("User email:"), mEmail);
@@ -135,6 +137,7 @@ public:
     form->addRow(tr("Credentials:"), mStoreCredentials);
     form->addRow(tr("Usage reporting:"), mUsageReporting);
     form->addRow(QString(), privacy);
+    form->addRow(tr("Terminal emulator command:"), mTerminalCommand);
 
 #if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
     form->addRow(tr("Single instance:"), mSingleInstance);
@@ -188,6 +191,10 @@ public:
     connect(mSingleInstance, &QCheckBox::toggled, [](bool checked) {
       Settings::instance()->setValue("singleInstance", checked);
     });
+
+    connect(mTerminalCommand, &QLineEdit::textChanged, [](const QString &text) {
+      Settings::instance()->setValue("terminal/command", text);
+    });
   }
 
   void init()
@@ -211,6 +218,8 @@ public:
     mUsageReporting->setChecked(settings->value("tracking/enabled").toBool());
 
     mSingleInstance->setChecked(settings->value("singleInstance").toBool());
+
+    mTerminalCommand->setText(settings->value("terminal/command").toString());
   }
 
 private:
@@ -224,6 +233,8 @@ private:
   QCheckBox *mStoreCredentials;
   QCheckBox *mUsageReporting;
   QCheckBox *mSingleInstance;
+
+  QLineEdit *mTerminalCommand;
 };
 
 class ToolsPanel : public QWidget

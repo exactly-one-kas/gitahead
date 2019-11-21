@@ -56,6 +56,11 @@
 #include <QVBoxLayout>
 #include <QtConcurrent>
 
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#include <memory>
+#endif
+
 namespace {
 
 const QString kSplitterKey = "splitter";
@@ -2304,6 +2309,131 @@ ConfigDialog *RepoView::configureSettings(ConfigDialog::Index index)
   ConfigDialog *dialog = new ConfigDialog(this, index);
   dialog->open();
   return dialog;
+}
+
+void RepoView::openTerminal()
+{
+  QString terminalCmd = Settings::instance()->value("terminal/command").toString();
+
+  if (terminalCmd.isEmpty()) {
+#if defined(Q_OS_WIN)
+    static QString detectedTerminal = nullptr;
+
+    if (detectedTerminal.isNull()) {
+      detectedTerminal = "";
+
+      QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+      QString programFilesDir = env.value("PROGRAMFILES");
+      QString programFiles32Dir = env.value("PROGRAMFILES(x86)");
+
+      QStringList candidates;
+
+      candidates.append("git-bash");
+      if (!programFilesDir.isEmpty())
+        candidates.append(programFilesDir + "/Git/git-bash.exe");
+      if (!programFiles32Dir.isEmpty())
+        candidates.append(programFiles32Dir + "/Git/git-bash.exe");
+      if (!programFilesDir.isEmpty())
+        candidates.append(programFilesDir + "/Git/bin/bash.exe");
+      if (!programFiles32Dir.isEmpty())
+        candidates.append(programFiles32Dir + "/Git/bin/bash.exe");
+      candidates.append("cmd");
+
+      for (QString candidate : candidates) {
+        QString exePath;
+
+        if (QDir::isAbsolutePath(candidate)) {
+          if (QFile::exists(candidate))
+            exePath = candidate;
+
+        } else {
+          exePath = QStandardPaths::findExecutable(candidate);
+        }
+
+        if (!exePath.isEmpty()) {
+          detectedTerminal = '"' + QDir::toNativeSeparators(exePath.replace("\"", "\"\"")) + '"';
+          break;
+        }
+      }
+    }
+
+    terminalCmd = detectedTerminal;
+
+#elif defined(Q_OS_MACOS)
+    // TODO
+
+#elif defined(Q_OS_UNIX)
+    static QString detectedTerminal = nullptr;
+    static const char *candidates[] = {
+      "x-terminal-emulator",
+      "xdg-terminal",
+      "i3-sensible-terminal",
+      "gnome-terminal",
+      "konsole",
+      "xterm",
+      nullptr
+    };
+
+    if (detectedTerminal.isNull()) {
+      detectedTerminal = "";
+
+      for (const char **candidate = candidates; *candidate; ++candidate) {
+        QString exePath = QStandardPaths::findExecutable(*candidate);
+
+        if (!exePath.isEmpty()) {
+          detectedTerminal = '"' + exePath.replace("\\", "\\\\").replace("\"", "\\\"") + '"';
+          break;
+        }
+      }
+    }
+
+    terminalCmd = detectedTerminal;
+#endif
+  }
+
+  if (terminalCmd.isEmpty())
+    return;
+
+#if defined(Q_OS_WIN)
+  // No direct method of QProcess can take a raw command line and a working directory
+  // So we call CreateProcessW() directly
+
+  std::unique_ptr<wchar_t[]> cmdBuffer(new wchar_t[terminalCmd.length() + 1]);
+  int len = terminalCmd.toWCharArray(cmdBuffer.get());
+  cmdBuffer[len] = L'\0';
+
+  STARTUPINFOW startupInfo;
+  PROCESS_INFORMATION processInfo;
+
+  ZeroMemory(&startupInfo, sizeof(STARTUPINFOW));
+  ZeroMemory(&processInfo, sizeof(PROCESS_INFORMATION));
+
+  bool success = CreateProcessW(
+    nullptr,
+    cmdBuffer.get(),
+    nullptr,
+    nullptr,
+    FALSE,
+    CREATE_NEW_CONSOLE,
+    nullptr,
+    (LPCWSTR) QDir::toNativeSeparators(mRepo.workdir().absolutePath()).utf16(),
+    &startupInfo,
+    &processInfo
+  );
+
+  if(!success)
+    return;
+
+  CloseHandle(processInfo.hProcess);
+  CloseHandle(processInfo.hThread);
+
+#elif defined(Q_OS_UNIX)
+  QProcess child;
+  child.setProgram("sh");
+  child.setArguments(QStringList() << "-c" << terminalCmd);
+  child.setWorkingDirectory(mRepo.workdir().absolutePath());
+  child.startDetached();
+#endif
 }
 
 void RepoView::ignore(const QString &name)
