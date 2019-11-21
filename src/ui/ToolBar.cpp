@@ -758,6 +758,42 @@ public:
   }
 };
 
+class FileManagerButton : public Button
+{
+public:
+  FileManagerButton(QWidget *parent = nullptr)
+    : Button(parent)
+  {}
+
+  void paintEvent(QPaintEvent *event)
+  {
+    Button::paintEvent(event);
+
+    QStyleOptionToolButton opt;
+    initStyleOption(&opt);
+
+    QColor color = opt.palette.buttonText().color();
+    QColor light = (isEnabled() && isActiveWindow()) ? color.lighter() : color;
+
+    QPainter painter(this);
+    painter.setPen(QPen(color, 1.0));
+    if (window()->windowHandle()->devicePixelRatio() > 1.0)
+      painter.setRenderHint(QPainter::Antialiasing);
+
+    qreal x = width() / 2.0;
+    qreal y = height() / 2.0;
+
+    painter.drawPolygon(QPolygonF({
+      QPointF(16, 13),
+      QPointF(0, 13),
+      QPointF(0, 0),
+      QPointF(7, 0),
+      QPointF(7, 2),
+      QPointF(16, 2)
+    }).translated(x - 8, y - 7));
+  }
+};
+
 } // anon. namespace
 
 ToolBar::ToolBar(MainWindow *parent)
@@ -906,6 +942,13 @@ ToolBar::ToolBar(MainWindow *parent)
     currentView()->openTerminal();
   });
 
+  mFileManagerButton = new FileManagerButton(this);
+  mFileManagerButton->setToolTip(tr("Open file manager"));
+  addWidget(mFileManagerButton);
+  connect(mFileManagerButton, &Button::clicked, [this] {
+    currentView()->openFileManager();
+  });
+
   addWidget(new Spacer(4, this));
 
   mConfigButton = new SettingsButton(this);
@@ -1037,6 +1080,7 @@ void ToolBar::updateView()
 {
   RepoView *view = currentView();
   mTerminalButton->setEnabled(view);
+  mFileManagerButton->setEnabled(view);
   mConfigButton->setEnabled(view);
   mLogButton->setEnabled(view);
   mModeGroup->button(RepoView::Diff)->setEnabled(view);

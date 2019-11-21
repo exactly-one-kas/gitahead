@@ -271,6 +271,9 @@ public:
   // terminal
   void openTerminal();
 
+  // file manager
+  void openFileManager();
+
   // ignore
   void ignore(const QString &name);
 

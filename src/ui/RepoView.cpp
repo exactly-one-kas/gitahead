@@ -2436,6 +2436,28 @@ void RepoView::openTerminal()
 #endif
 }
 
+void RepoView::openFileManager()
+{
+  QString fileManagerCmd = Settings::instance()->value("filemanager/command").toString();
+  QString arg = QDir::toNativeSeparators(mRepo.workdir().absolutePath());
+
+  if (fileManagerCmd.isEmpty()) {
+#if defined(Q_OS_WIN)
+    fileManagerCmd = "explorer \"%1\"";
+    arg = arg.replace("\"", "\"\"");
+
+#elif defined(Q_OS_MACOS)
+    // TODO
+
+#elif defined(Q_OS_UNIX)
+    fileManagerCmd = "xdg-open \"%1\"";
+    arg = arg.replace("\"", "\\\"");
+#endif
+  }
+
+  QProcess::startDetached(fileManagerCmd.arg(arg));
+}
+
 void RepoView::ignore(const QString &name)
 {
   QFile file(mRepo.workdir().filePath(".gitignore"));

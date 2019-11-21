@@ -127,6 +127,7 @@ public:
       tr("Only allow a single running instance"), this);
 
     mTerminalCommand = new QLineEdit(this);
+    mFileManagerCommand = new QLineEdit(this);
 
     QFormLayout *form = new QFormLayout;
     form->addRow(tr("User name:"), mName);
@@ -138,6 +139,7 @@ public:
     form->addRow(tr("Usage reporting:"), mUsageReporting);
     form->addRow(QString(), privacy);
     form->addRow(tr("Terminal emulator command:"), mTerminalCommand);
+    form->addRow(tr("File manager command:"), mFileManagerCommand);
 
 #if defined(Q_OS_LINUX) || defined(Q_OS_WIN)
     form->addRow(tr("Single instance:"), mSingleInstance);
@@ -195,6 +197,9 @@ public:
     connect(mTerminalCommand, &QLineEdit::textChanged, [](const QString &text) {
       Settings::instance()->setValue("terminal/command", text);
     });
+    connect(mFileManagerCommand, &QLineEdit::textChanged, [](const QString &text) {
+      Settings::instance()->setValue("filemanager/command", text);
+    });
   }
 
   void init()
@@ -220,6 +225,7 @@ public:
     mSingleInstance->setChecked(settings->value("singleInstance").toBool());
 
     mTerminalCommand->setText(settings->value("terminal/command").toString());
+    mFileManagerCommand->setText(settings->value("filemanager/command").toString());
   }
 
 private:
@@ -235,6 +241,7 @@ private:
   QCheckBox *mSingleInstance;
 
   QLineEdit *mTerminalCommand;
+  QLineEdit *mFileManagerCommand;
 };
 
 class ToolsPanel : public QWidget
