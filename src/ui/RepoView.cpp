@@ -1407,7 +1407,12 @@ void RepoView::rebase(
   git::Branch head = mRepo.head();
   Q_ASSERT(head.isValid());
 
-  git::Rebase rebase = mRepo.rebase(upstream);
+  git::Rebase rebase = mRepo.rebase(
+    upstream,
+    mDetails->overrideUser(),
+    mDetails->overrideEmail()
+  );
+
   if (!rebase.isValid()) {
     LogEntry *err = error(parent, tr("rebase"), head.name());
 
@@ -1756,7 +1761,14 @@ bool RepoView::commit(
   LogEntry *entry = addLogEntry(text, tr("Commit"), parent);
 
   bool fakeSignature = false;
-  git::Commit commit = mRepo.commit(message, upstream, &fakeSignature);
+  git::Commit commit = mRepo.commit(
+    message,
+    upstream,
+    &fakeSignature,
+    mDetails->overrideUser(),
+    mDetails->overrideEmail()
+  );
+
   if (!commit.isValid()) {
     error(entry, tr("commit"));
     return false;
@@ -2082,7 +2094,14 @@ void RepoView::promptToTag(const git::Commit &commit)
     bool force = dialog->force();
     QString name = dialog->name();
     QString msg = dialog->message();
-    git::TagRef tag = mRepo.createTag(commit, name, msg, force);
+    git::TagRef tag = mRepo.createTag(
+      commit,
+      name,
+      msg,
+      force,
+      mDetails->overrideUser(),
+      mDetails->overrideEmail()
+    );
 
     QString link = commit.link();
     QString text = tag.isValid() ? tr("%1 as %2").arg(link, tag.name()) : link;
