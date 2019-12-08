@@ -105,7 +105,7 @@ void DiffWidget::setDiff(
       order = static_cast<Qt::SortOrder>(settings->value(settings->SORT_ORDER).toInt());
     }
 
-    mDiff.sort(role, order, index);
+    mDiff.sort(role, order, diff.index());
   }
 
   mDiffView->setDiff(diff);
