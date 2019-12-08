@@ -858,6 +858,13 @@
     </message>
 </context>
 <context>
+    <name>DefaultContentWidget</name>
+    <message>
+        <source>Binary file of size %1, no preview available.</source>
+        <translation type="vanished">Binärdatei mit %1 Daten, keine Vorschau verfügbar.</translation>
+    </message>
+</context>
+<context>
     <name>DefaultWidget</name>
     <message>
         <location filename="../src/ui/TabWidget.cpp" line="45"/>
@@ -882,7 +889,7 @@
     <message>
         <location filename="../src/ui/TabWidget.cpp" line="92"/>
         <source>Add %1 account</source>
-        <translation>Füge %1-Account hinzu</translation>
+        <translation>%1-Account hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/ui/TabWidget.cpp" line="104"/>
@@ -1794,6 +1801,13 @@
     </message>
 </context>
 <context>
+    <name>ImageContentWidget</name>
+    <message>
+        <source>&lt;b&gt;Size:&lt;/b&gt; %1</source>
+        <translation type="vanished">&lt;b&gt;Größe:&lt;/b&gt; %1</translation>
+    </message>
+</context>
+<context>
     <name>Images</name>
     <message>
         <location filename="../src/ui/DiffView.cpp" line="586"/>
@@ -2671,7 +2685,7 @@ Beispiele
     <message>
         <location filename="../src/ui/IndexCompleter.cpp" line="101"/>
         <source>Show Advanced Search</source>
-        <translation>Erweterte Suche anzeigen</translation>
+        <translation>Erweiterte Suche anzeigen</translation>
     </message>
 </context>
 <context>
@@ -4201,7 +4215,7 @@ Dies reverted den Commit %2.</translation>
     <message>
         <location filename="../src/ui/SideBar.cpp" line="751"/>
         <source>Add %1 Account</source>
-        <translation>Füge %1-Account hinzu</translation>
+        <translation>%1-Account hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/ui/SideBar.cpp" line="786"/>
@@ -4608,6 +4622,13 @@ Dies reverted den Commit %2.</translation>
     </message>
 </context>
 <context>
+    <name>UntrackedDirWidget</name>
+    <message>
+        <source>A directory containing no tracked file.</source>
+        <translation type="vanished">Ein Ordner ohne getrackte Dateien.</translation>
+    </message>
+</context>
+<context>
     <name>UpToDateDialog</name>
     <message>
         <location filename="../src/update/UpToDateDialog.cpp" line="21"/>
@@ -4738,6 +4759,7 @@ Dies reverted den Commit %2.</translation>
     </message>
     <message>
         <location filename="../src/update/Updater.cpp" line="274"/>
+        <location filename="../src/update/Updater_mac.mm" line="117"/>
         <source>Helper application failed to start</source>
         <translation>Helfer-Programm konnte nicht gestartet werden</translation>
     </message>
@@ -4745,6 +4767,21 @@ Dies reverted den Commit %2.</translation>
         <location filename="../src/update/Updater_win.cpp" line="24"/>
         <source>Installer failed to start</source>
         <translation>Installer konnte nicht gestartet werden</translation>
+    </message>
+    <message>
+        <location filename="../src/update/Updater_mac.mm" line="77"/>
+        <source>The disk image failed to mount successfully</source>
+        <translation>Das Volumen-Abbild konnte nicht eingehangen werden</translation>
+    </message>
+    <message>
+        <location filename="../src/update/Updater_mac.mm" line="96"/>
+        <source>The existing bundle could not be moved to the trash</source>
+        <translation>Das bereits vorhandene Paket konnte nicht in den Papierkorb verschoben werden</translation>
+    </message>
+    <message>
+        <location filename="../src/update/Updater_mac.mm" line="108"/>
+        <source>The new bundle could not be copied into place</source>
+        <translation>Das neue Paket konnte nicht an den Zielort verschoben werden</translation>
     </message>
 </context>
 <context>
