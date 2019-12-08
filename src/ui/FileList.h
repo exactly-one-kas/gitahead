@@ -56,6 +56,7 @@ private:
   QMenu *mSelectMenu;
   QMenu *mSortMenu;
   QAction *mIgnoreWs;
+  QAction *mHideUt;
   QModelIndex mPressedIndex;
   QToolButton *mButton;
 
