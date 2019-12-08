@@ -438,16 +438,66 @@ protected:
   }
 };
 
-class Images : public QWidget
+class UntrackedDirWidget : public QWidget
 {
   Q_OBJECT
 
 public:
-  Images(
+  UntrackedDirWidget(
+    const QString path,
+    QWidget *parent = nullptr)
+    : QWidget(parent)
+    {
+      QHBoxLayout *layout = new QHBoxLayout(this);
+      QLabel *label = new QLabel();
+      label->setAlignment(Qt::AlignCenter);
+      label->setText(tr("A directory containing no tracked file."));
+      layout->addWidget(label);
+    }
+};
+
+class BinaryContentWidget : public QWidget
+{
+public:
+  BinaryContentWidget(QWidget *parent=nullptr)
+  : QWidget(parent)
+  {
+  }
+  bool hasFailed() const
+  {
+    return failure;
+  }
+protected:
+  bool failure = false;
+};
+
+class DefaultContentWidget : public BinaryContentWidget
+{
+public:
+  DefaultContentWidget(
     const git::Patch patch,
     bool lfs = false,
     QWidget *parent = nullptr)
-    : QWidget(parent), mPatch(patch)
+    : BinaryContentWidget(parent)
+    {
+      QHBoxLayout *layout = new QHBoxLayout(this);
+      QLabel *label = new QLabel();
+      label->setAlignment(Qt::AlignCenter);
+      QString path = patch.repo().workdir().filePath(patch.name());
+      int size = QFileInfo(path).size();
+      label->setText(tr("Binary file of size %1, no preview available.").arg(locale().formattedDataSize(size)));
+      layout->addWidget(label);
+    }
+};
+
+class ImageContentWidget : public BinaryContentWidget
+{
+public:
+  ImageContentWidget(
+    const git::Patch patch,
+    bool lfs = false,
+    QWidget *parent = nullptr)
+    : BinaryContentWidget(parent), mPatch(patch)
   {
     int size = 0;
     QPixmap pixmap = loadPixmap(git::Diff::NewFile, size, lfs);
@@ -457,8 +507,10 @@ public:
       pixmap.load(path);
     }
 
-    if (pixmap.isNull())
+    if (pixmap.isNull()) {
+      failure = true;
       return;
+    }
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(6, 4, 8, 4);
@@ -1661,6 +1713,8 @@ public:
       // Add edit button.
       mEdit = new EditButton(patch, -1, binary, lfs, this);
       mEdit->setToolTip(FileWidget::tr("Edit File"));
+      if (QFileInfo(mPatch.repo().workdir().filePath(name)).isDir())
+        mEdit->setEnabled(false);
       buttons->addWidget(mEdit);
 
       // Add discard button.
@@ -1810,52 +1864,41 @@ public:
     const git::Patch &patch,
     const git::Patch &staged,
     QWidget *parent = nullptr)
-    : QWidget(parent), mView(view), mDiff(diff), mPatch(patch)
+    : QWidget(parent), mView(view), mDiff(diff), mPatch(patch), mStaged(staged)
   {
     setObjectName("FileWidget");
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout = new QVBoxLayout(this);
 
     git::Repository repo = RepoView::parentView(this)->repo();
 
     QString name = patch.name();
-    QString path = repo.workdir().filePath(name);
-    bool submodule = repo.lookupSubmodule(name).isValid();
+    path = repo.workdir().filePath(name);
+    submodule = repo.lookupSubmodule(name).isValid();
 
-    bool binary = patch.isBinary();
+    binary = patch.isBinary();
     if (patch.isUntracked()) {
       QFile dev(path);
       if (dev.open(QFile::ReadOnly)) {
-        QByteArray content = dev.readAll();
+        QByteArray content = dev.read(1024);
         git::Buffer buffer(content.constData(), content.length());
         binary = buffer.isBinary();
+        if (!binary) {
+          dev.seek(dev.size() - 1024);
+          QByteArray content = dev.read(1024);
+          git::Buffer buffer(content.constData(), content.length());
+          binary = buffer.isBinary();
+        }
       }
     }
 
-    bool lfs = patch.isLfsPointer();
+    lfs = patch.isLfsPointer();
 
     mHeader = new Header(diff, patch, binary, lfs, submodule, parent);
     layout->addWidget(mHeader);
 
-    DisclosureButton *disclosureButton = mHeader->disclosureButton();
+    disclosureButton = mHeader->disclosureButton();
     connect(disclosureButton, &DisclosureButton::toggled, [this](bool visible) {
-
-      if (mHeader->lfsButton() && !visible) {
-        mHunks.first()->setVisible(false);
-        if (!mImages.isEmpty())
-          mImages.first()->setVisible(false);
-        return;
-      }
-
-      if (mHeader->lfsButton() && visible) {
-        bool checked = mHeader->lfsButton()->isChecked();
-        mHunks.first()->setVisible(!checked);
-        if (!mImages.isEmpty())
-          mImages.first()->setVisible(checked);
-        return;
-      }
-
-      foreach (HunkWidget *hunk, mHunks)
-        hunk->setVisible(visible);
+        displayContent(visible);
     });
 
     if (diff.isStatusDiff()) {
@@ -1874,55 +1917,10 @@ public:
       });
     }
 
-    // Try to load an image from the file.
-    if (binary) {
-      layout->addWidget(addImage(disclosureButton, mPatch));
-      return;
-    }
-
-    // Add untracked file content.
-    if (patch.isUntracked()) {
-      if (!QFileInfo(path).isDir())
-        layout->addWidget(addHunk(diff, patch, -1, lfs, submodule));
-      return;
-    }
-
-    // Generate a diff between the head tree and index.
-    QSet<int> stagedHunks;
-    if (staged.isValid()) {
-      for (int i = 0; i < staged.count(); ++i)
-        stagedHunks.insert(staged.lineNumber(i, 0, git::Diff::OldFile));
-    }
-
-    // Add diff hunks.
-    int hunkCount = patch.count();
-    for (int hidx = 0; hidx < hunkCount; ++hidx) {
-      HunkWidget *hunk = addHunk(diff, patch, hidx, lfs, submodule);
-      int startLine = patch.lineNumber(hidx, 0, git::Diff::OldFile);
-      hunk->header()->check()->setChecked(stagedHunks.contains(startLine));
-      layout->addWidget(hunk);
-    }
-
-    // LFS
-    if (QToolButton *lfsButton = mHeader->lfsButton()) {
-      connect(lfsButton, &QToolButton::clicked,
-      [this, layout, disclosureButton, lfsButton](bool checked) {
-        lfsButton->setText(checked ? tr("Show Pointer") : tr("Show Object"));
-        mHunks.first()->setVisible(!checked);
-
-        // Image already loaded.
-        if (!mImages.isEmpty()) {
-          mImages.first()->setVisible(checked);
-          return;
-        }
-
-        // Load image.
-        layout->addWidget(addImage(disclosureButton, mPatch, true));
-      });
-    }
-
     // Start hidden when the file is checked.
     bool expand = (mHeader->check()->checkState() == Qt::Unchecked);
+    if (mPatch.isUntracked() && (QFileInfo(path).isDir() || binary))
+      expand = false;
 
     if (Settings::instance()->value("collapse/added").toBool() == true &&
         patch.status() == GIT_DELTA_ADDED)
@@ -1933,11 +1931,89 @@ public:
       expand = false;
 
     disclosureButton->setChecked(expand);
+    if (expand)
+      displayContent(true);
+  }
+
+  void createContent()
+  {
+    // Try to preview binary content from the file.
+    if (binary) {
+      layout->addWidget(addOtherContent(disclosureButton, mPatch));
+    } else if (mPatch.isUntracked()) {     // Add untracked file content.
+      if (QFileInfo(path).isDir()) {
+        UntrackedDirWidget *dirw = new UntrackedDirWidget(path, this);
+        layout->addWidget(dirw);
+        mOtherContent.append(dirw);
+      } else
+        layout->addWidget(addHunk(mDiff, mPatch, -1, lfs, submodule));
+    } else {
+      // Generate a diff between the head tree and index.
+      QSet<int> stagedHunks;
+      if (mStaged.isValid()) {
+        for (int i = 0; i < mStaged.count(); ++i)
+          stagedHunks.insert(mStaged.lineNumber(i, 0, git::Diff::OldFile));
+      }
+
+      // Add diff hunks.
+      int hunkCount = mPatch.count();
+      for (int hidx = 0; hidx < hunkCount; ++hidx) {
+        HunkWidget *hunk = addHunk(mDiff, mPatch, hidx, lfs, submodule);
+        int startLine = mPatch.lineNumber(hidx, 0, git::Diff::OldFile);
+        hunk->header()->check()->setChecked(stagedHunks.contains(startLine));
+        layout->addWidget(hunk);
+      }
+
+      // LFS
+      if (QToolButton *lfsButton = mHeader->lfsButton()) {
+        connect(lfsButton, &QToolButton::clicked,
+        [this, lfsButton](bool checked) {
+          lfsButton->setText(checked ? tr("Show Pointer") : tr("Show Object"));
+          mHunks.first()->setVisible(!checked);
+
+          // Image already loaded.
+          if (!mOtherContent.isEmpty()) {
+            mOtherContent.first()->setVisible(checked);
+            return;
+          }
+
+          // Load binary content.
+          layout->addWidget(addOtherContent(disclosureButton, mPatch, true));
+        });
+      }
+    }
+    contentCreated = true;
+  }
+
+  void displayContent(bool visible)
+  {
+    if (visible && !contentCreated)
+        createContent();
+
+    if (mHeader->lfsButton() && !visible) {
+    mHunks.first()->setVisible(false);
+    if (!mOtherContent.isEmpty())
+        mOtherContent.first()->setVisible(false);
+    return;
+    }
+
+    if (mHeader->lfsButton() && visible) {
+    bool checked = mHeader->lfsButton()->isChecked();
+    mHunks.first()->setVisible(!checked);
+    if (!mOtherContent.isEmpty())
+        mOtherContent.first()->setVisible(checked);
+    return;
+    }
+
+    foreach (HunkWidget *hunk, mHunks)
+      hunk->setVisible(visible);
+    foreach (QWidget *widget, mOtherContent)
+      widget->setVisible(visible);
   }
 
   bool isEmpty()
   {
-    return (mHunks.isEmpty() && mImages.isEmpty());
+    return (mHunks.isEmpty() && mOtherContent.isEmpty());
   }
 
   Header *header() const { return mHeader; }
@@ -1946,21 +2022,27 @@ public:
 
   QList<HunkWidget *> hunks() const { return mHunks; }
 
-  QWidget *addImage(
+  QWidget *addOtherContent(
     DisclosureButton *button,
     const git::Patch patch,
     bool lfs = false)
   {
-    Images *images = new Images(patch, lfs, this);
+    BinaryContentWidget *content = nullptr;
+
+    content = new ImageContentWidget(patch, lfs, this);
+    if (content->hasFailed()) {
+      delete content;
+      content = new DefaultContentWidget(patch, lfs, this);
+    }
 
     // Hide on file collapse.
     if (!lfs)
-      connect(button, &DisclosureButton::toggled, images, &QLabel::setVisible);
+      connect(button, &DisclosureButton::toggled, content, &QLabel::setVisible);
 
     // Remember image.
-    mImages.append(images);
+    mOtherContent.append(content);
 
-    return images;
+    return content;
   }
 
   HunkWidget *addHunk(
@@ -2023,10 +2105,19 @@ private:
 
   git::Diff mDiff;
   git::Patch mPatch;
+  git::Patch mStaged;
+
+  QString path;
+  bool submodule;
+  bool binary;
+  bool lfs;
 
   Header *mHeader;
-  QList<QWidget *> mImages;
+  DisclosureButton *disclosureButton;
+  QVBoxLayout* layout;
+  QList<QWidget *> mOtherContent;
   QList<HunkWidget *> mHunks;
+  bool contentCreated = false;
 };
 
 } // anon. namespace
@@ -2297,11 +2388,6 @@ void DiffView::fetchMore()
 
     mFiles.append(file);
 
-    if (file->isEmpty()) {
-      DisclosureButton *button = file->header()->disclosureButton();
-      button->setChecked(false);
-      button->setEnabled(false);
-    }
 
     // Respond to diagnostic signal.
     connect(file, &FileWidget::diagnosticAdded,
