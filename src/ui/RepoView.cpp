@@ -643,12 +643,17 @@ void RepoView::visitLink(const QString &link)
   }
 
   if (action == "push") {
+    git::Remote remote;
+
+    QString value = query.queryItemValue("to");
+    if (!value.isEmpty())
+      remote = mRepo.lookupRemote(value);
+
     if (query.queryItemValue("force") == "true") {
-      promptToForcePush();
+      promptToForcePush(remote, ref);
     } else {
-      git::Reference ref = mRepo.lookupRef(query.queryItemValue("ref"));
       bool setUpstream = query.queryItemValue("set-upstream") == "true";
-      push(git::Remote(), ref, QString(), setUpstream);
+      push(remote, ref, QString(), setUpstream);
     }
 
     return;
@@ -1591,7 +1596,9 @@ void RepoView::cherryPick(const git::Commit &commit)
   this->commit(msg, git::AnnotatedCommit(), parent);
 }
 
-void RepoView::promptToForcePush()
+void RepoView::promptToForcePush(
+  const git::Remote &remote,
+  const git::Reference &src)
 {
   // FIXME: Check if force is really required?
 
@@ -1608,8 +1615,8 @@ void RepoView::promptToForcePush()
 
   QPushButton *accept =
     dialog->addButton(tr("Force Push"), QMessageBox::AcceptRole);
-  connect(accept, &QPushButton::clicked, [this] {
-    push(git::Remote(), git::Reference(), QString(), false, true);
+  connect(accept, &QPushButton::clicked, [this, remote, src] {
+    push(remote, src, QString(), false, true);
   });
 
   dialog->open();
@@ -1719,15 +1726,28 @@ void RepoView::push(
       QString errString = result.errorString();
       LogEntry *errorEntry = error(entry, tr("push to"), name, errString);
       if (err == GIT_ENONFASTFORWARD) {
-        QString hint1 =
-          tr("You may want to integrate remote commits first by "
-          "<a href='action:pull'>pulling</a>. Then "
-          "<a href='action:push'>push</a> again.");
-        QString hint2 =
-          tr("If you really want the remote to lose commits, you may "
-          "be able to <a href='action:push?force=true'>force push</a>.");
-        errorEntry->addEntry(LogEntry::Hint, hint1);
-        errorEntry->addEntry(LogEntry::Warning, hint2);
+        if (src.isTag()) {
+          QString hint1 =
+            tr("The tag update may cause the remote to lose commits.");
+          QString hint2 =
+            tr("If you want to risk the remote losing commits, you can "
+            "<a href='action:push?ref=%1&to=%2&force=true'>force push</a>.");
+
+          errorEntry->addEntry(LogEntry::Hint, hint1);
+          errorEntry->addEntry(LogEntry::Warning, hint2.arg(
+            src.qualifiedName().toHtmlEscaped(), name.toHtmlEscaped()));
+
+        } else {
+          QString hint1 =
+            tr("You may want to integrate remote commits first by "
+            "<a href='action:pull'>pulling</a>. Then "
+            "<a href='action:push'>push</a> again.");
+          QString hint2 =
+            tr("If you really want the remote to lose commits, you may "
+            "be able to <a href='action:push?force=true'>force push</a>.");
+          errorEntry->addEntry(LogEntry::Hint, hint1);
+          errorEntry->addEntry(LogEntry::Warning, hint2);
+        }
       }
     } else {
       mCallbacks->storeDeferredCredentials();
@@ -2123,7 +2143,9 @@ void RepoView::popStash(int index)
 
 void RepoView::promptToTag(const git::Commit &commit)
 {
-  TagDialog *dialog = new TagDialog(mRepo, commit.shortId(), this);
+  TagDialog *dialog = new TagDialog(mRepo, commit.shortId(),
+    mRepo.defaultRemote(), this);
+
   connect(dialog, &TagDialog::accepted, this, [this, commit, dialog] {
     bool force = dialog->force();
     QString name = dialog->name();
@@ -2137,11 +2159,15 @@ void RepoView::promptToTag(const git::Commit &commit)
       mDetails->overrideEmail()
     );
 
+    git::Remote remote = dialog->remote();
+
     QString link = commit.link();
     QString text = tag.isValid() ? tr("%1 as %2").arg(link, tag.name()) : link;
     LogEntry *entry = addLogEntry(text, tr("Tag"));
     if (!tag.isValid())
       error(entry, tr("tag"), link);
+    else if (remote.isValid())
+      push(remote, tag);
   });
 
   dialog->open();
