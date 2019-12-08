@@ -41,13 +41,6 @@ add_custom_command(OUTPUT
   DEPENDS ${CHANGELOG_MD} ${ACKNOWLEDGMENTS_MD} ${PRIVACY_MD} ${PLUGIN_MD}
 )
 
-# Create translations.
-set(L10N_DIR ${CMAKE_SOURCE_DIR}/l10n)
-qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/src
-  ${L10N_DIR}/gitahead_de.ts
-  ${L10N_DIR}/gitahead_es.ts
-)
-
 # Add application library.
 add_library(app
   Application.cpp
@@ -68,8 +61,7 @@ target_compile_definitions(app
     GITAHEAD_VERSION="${GITAHEAD_VERSION}"
   PRIVATE
     GITAHEAD_TRACKING_ID="${GITAHEAD_TRACKING_ID}"
-    QT_TRANSLATIONS_DIR="${Qt5_DIR}/../../../translations"
-    GITAHEAD_TRANSLATIONS_DIR="${CMAKE_CURRENT_BINARY_DIR}"
+    QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}"
 )
 
 target_link_libraries(app
@@ -105,7 +97,6 @@ add_executable(gitahead WIN32 MACOSX_BUNDLE
   ${ACKNOWLEDGMENTS_HTML}
   ${PRIVACY_HTML}
   ${PLUGIN_HTML}
-  ${QM_FILES}
 )
 
 target_link_libraries(gitahead app)

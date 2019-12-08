@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3.1)
+cmake_minimum_required(VERSION 3.6.2)
 project(GitAhead)
 
 # Set name and version.
@@ -61,6 +61,8 @@ endif()
 
 find_package(Qt5 5.9 COMPONENTS ${QT_MODULES} LinguistTools REQUIRED)
 
+set(QT_TRANSLATIONS_DIR "${Qt5_DIR}/../../../translations")
+
 if(APPLE)
   foreach(QT_MODULE ${QT_MODULES})
     # FIXME: Force debug build to link against release libraries
@@ -77,5 +79,6 @@ endif()
 
 add_subdirectory(dep)
 add_subdirectory(src)
+add_subdirectory(l10n)
 add_subdirectory(test)
 add_subdirectory(pack)
