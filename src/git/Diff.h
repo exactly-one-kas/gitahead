@@ -75,7 +75,7 @@ public:
   // Detect renames, copies, etc. This is expensive.
   void findSimilar();
 
-  void sort(SortRole role, Qt::SortOrder order = Qt::AscendingOrder);
+  void sort(SortRole role, Qt::SortOrder order, const git::Index &index);
 
   void setAllStaged(bool staged, bool yieldFocus = true);
 
