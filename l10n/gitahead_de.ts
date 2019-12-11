@@ -1668,7 +1668,7 @@
         <location filename="../src/dialogs/ConfigDialog.cpp" line="98"/>
         <location filename="../src/dialogs/SettingsDialog.cpp" line="118"/>
         <source>Prune when fetching</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Fetchen aufräumen</translation>
     </message>
     <message>
         <location filename="../src/dialogs/ConfigDialog.cpp" line="101"/>
