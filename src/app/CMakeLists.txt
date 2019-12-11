@@ -64,12 +64,16 @@ target_compile_definitions(app
     QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}"
 )
 
+find_package(Threads)
+
 target_link_libraries(app
   conf
   git
   ui
   update
   Qt5::Widgets
+  ${CMAKE_DL_LIBS} # DL is needed by OpenSSL on Linux
+  Threads::Threads # Ditto for pthread
 )
 
 if(UNIX AND NOT APPLE)
