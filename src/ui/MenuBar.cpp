@@ -706,7 +706,7 @@ MenuBar::MenuBar(QWidget *parent)
   mLfsUnlock = lfs->addAction(tr("Remove all locks"));
   lfsUnlockHotkey.use(mLfsUnlock);
   connect(mLfsUnlock, &QAction::triggered, [this] {
-    view()->lfsSetLocked(view()->repo().lfsLocks().toList(), false);
+    view()->lfsSetLocked(view()->repo().lfsLocks().values(), false);
   });
 
   lfs->addSeparator();

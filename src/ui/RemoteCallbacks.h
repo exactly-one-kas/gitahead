@@ -13,9 +13,9 @@
 #include "git/Remote.h"
 #include "git/Repository.h"
 #include "host/Account.h"
+#include <QElapsedTimer>
 #include <QObject>
 #include <QSet>
-#include <QTime>
 
 class LogEntry;
 
@@ -116,7 +116,7 @@ private:
   LogEntry *mLog;
   QString mName;
 
-  QTime mTime;
+  QElapsedTimer mTimer;
   QString mSideband;
   int mBytesReceived = 0;
   bool mCanceled = false;
