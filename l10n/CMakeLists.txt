@@ -2,6 +2,12 @@ option(UPDATE_TRANSLATIONS
   "Update translation (*.ts) files when source files change"
 )
 
+set(LANGUAGES
+  de
+  en
+  es
+)
+
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 file(GLOB_RECURSE SOURCE_FILES
   ${SRC_DIR}/*.h
@@ -9,7 +15,9 @@ file(GLOB_RECURSE SOURCE_FILES
   ${SRC_DIR}/*.mm
 )
 
-file(GLOB TS_FILES *.ts)
+foreach(LANGUAGE ${LANGUAGES})
+  set(TS_FILES ${TS_FILES} gitahead_${LANGUAGE}.ts)
+endforeach()
 
 if(UPDATE_TRANSLATIONS)
   # FIXME: Clean removes the .ts files.
@@ -21,17 +29,9 @@ endif()
 add_custom_target(translations DEPENDS ${QM_FILES})
 add_dependencies(gitahead translations)
 
-foreach(TS_FILE ${TS_FILES})
-  if(TS_FILE MATCHES ^.*_\([a-zA-Z_-]+\)\\.ts$
-    AND NOT CMAKE_MATCH_1 IN_LIST LANGUAGES)
-
-    set(LANGUAGES ${LANGUAGES} ${CMAKE_MATCH_1})
-  endif()
-endforeach()
-
-foreach(LANGUAGE_CODE ${LANGUAGES})
+foreach(LANGUAGE ${LANGUAGES})
   set(QT_QM_FILES ${QT_QM_FILES}
-    ${QT_TRANSLATIONS_DIR}/qt_${LANGUAGE_CODE}.qm
+    ${QT_TRANSLATIONS_DIR}/qtbase_${LANGUAGE}.qm
   )
 endforeach()
 

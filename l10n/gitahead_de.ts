@@ -313,12 +313,12 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../src/app/Application.cpp" line="567"/>
+        <location filename="../src/app/Application.cpp" line="569"/>
         <source>SSL Errors</source>
         <translation>SSL-Fehler</translation>
     </message>
     <message>
-        <location filename="../src/app/Application.cpp" line="569"/>
+        <location filename="../src/app/Application.cpp" line="571"/>
         <source>Failed to set up SSL session. Do you want to ignore these errors?</source>
         <translation>SSL-Sitzung konnte nicht initialisiert werden. Willst Du den Fehler ignorieren?</translation>
     </message>
@@ -656,99 +656,99 @@
 <context>
     <name>CommitList</name>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1414"/>
+        <location filename="../src/ui/CommitList.cpp" line="1438"/>
         <source>Remove Untracked Files</source>
         <translation>Ungetrackte Dateien entfernen</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1431"/>
+        <location filename="../src/ui/CommitList.cpp" line="1455"/>
         <source>Apply</source>
         <translation>Anwenden</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1435"/>
+        <location filename="../src/ui/CommitList.cpp" line="1459"/>
         <source>Pop</source>
         <translation>Poppen</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1439"/>
+        <location filename="../src/ui/CommitList.cpp" line="1463"/>
         <source>Drop</source>
         <translation>Droppen</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1453"/>
+        <location filename="../src/ui/CommitList.cpp" line="1477"/>
         <source>Unstar</source>
         <translation>Ent-Favorisieren</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1453"/>
+        <location filename="../src/ui/CommitList.cpp" line="1477"/>
         <source>Star</source>
         <translation>Favorisieren</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1462"/>
+        <location filename="../src/ui/CommitList.cpp" line="1486"/>
         <source>Add Tag...</source>
         <translation>Tag hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1466"/>
+        <location filename="../src/ui/CommitList.cpp" line="1490"/>
         <source>New Branch...</source>
         <translation>Neuer Branch...</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1472"/>
+        <location filename="../src/ui/CommitList.cpp" line="1496"/>
         <source>Merge...</source>
         <translation>Mergen...</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1487"/>
+        <location filename="../src/ui/CommitList.cpp" line="1511"/>
         <source>Rebase...</source>
         <translation>Rebasen...</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1502"/>
+        <location filename="../src/ui/CommitList.cpp" line="1526"/>
         <source>Revert</source>
         <translation>Reverten</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1506"/>
+        <location filename="../src/ui/CommitList.cpp" line="1530"/>
         <source>Cherry-pick</source>
         <translation>Cherry-Picken</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1515"/>
-        <location filename="../src/ui/CommitList.cpp" line="1525"/>
-        <location filename="../src/ui/CommitList.cpp" line="1545"/>
+        <location filename="../src/ui/CommitList.cpp" line="1539"/>
+        <location filename="../src/ui/CommitList.cpp" line="1549"/>
+        <location filename="../src/ui/CommitList.cpp" line="1569"/>
         <source>Checkout %1</source>
         <translation>%1 auschecken</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1536"/>
+        <location filename="../src/ui/CommitList.cpp" line="1560"/>
         <source>Local branch is already checked out</source>
         <translation>Ein lokaler Branch ist bereits ausgecheckt</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1539"/>
+        <location filename="../src/ui/CommitList.cpp" line="1563"/>
         <source>This is a bare repository</source>
         <translation>Dies ist ein Bare-Repository</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1556"/>
+        <location filename="../src/ui/CommitList.cpp" line="1580"/>
         <source>Reset</source>
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1557"/>
+        <location filename="../src/ui/CommitList.cpp" line="1581"/>
         <source>Soft</source>
         <translation>Soft</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1558"/>
+        <location filename="../src/ui/CommitList.cpp" line="1582"/>
         <source>Mixed</source>
         <translation>Mixed</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="1559"/>
+        <location filename="../src/ui/CommitList.cpp" line="1583"/>
         <source>Hard</source>
         <translation>Hard</translation>
     </message>
@@ -756,12 +756,12 @@
 <context>
     <name>CommitModel</name>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="346"/>
+        <location filename="../src/ui/CommitList.cpp" line="351"/>
         <source>Uncommitted changes</source>
         <translation>Uncommittete Änderungen</translation>
     </message>
     <message>
-        <location filename="../src/ui/CommitList.cpp" line="347"/>
+        <location filename="../src/ui/CommitList.cpp" line="352"/>
         <source>Checking for uncommitted changes</source>
         <translation>Prüfe auf uncommittete Änderungen</translation>
     </message>
@@ -4261,89 +4261,89 @@ Dies reverted den Commit %2.</translation>
 <context>
     <name>SideBar</name>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="690"/>
+        <location filename="../src/ui/SideBar.cpp" line="688"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="692"/>
-        <location filename="../src/ui/SideBar.cpp" line="796"/>
-        <location filename="../src/ui/SideBar.cpp" line="891"/>
+        <location filename="../src/ui/SideBar.cpp" line="690"/>
+        <location filename="../src/ui/SideBar.cpp" line="794"/>
+        <location filename="../src/ui/SideBar.cpp" line="889"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="697"/>
+        <location filename="../src/ui/SideBar.cpp" line="695"/>
         <source>Authorize</source>
         <translation>Authorisieren</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="711"/>
+        <location filename="../src/ui/SideBar.cpp" line="709"/>
         <source>Clone Repository</source>
         <translation>Repository klonen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="722"/>
+        <location filename="../src/ui/SideBar.cpp" line="720"/>
         <source>Open Existing Repository</source>
         <translation>Bestehendes Repository öffnen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="726"/>
+        <location filename="../src/ui/SideBar.cpp" line="724"/>
         <source>Open Repository</source>
         <translation>Repository öffnen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="736"/>
+        <location filename="../src/ui/SideBar.cpp" line="734"/>
         <source>Initialize New Repository</source>
         <translation>Neues Repository initialisieren</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="751"/>
+        <location filename="../src/ui/SideBar.cpp" line="749"/>
         <source>Add %1 Account</source>
         <translation>%1-Account hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="786"/>
+        <location filename="../src/ui/SideBar.cpp" line="784"/>
         <source>&lt;p&gt;Are you sure you want to remove the remote repository association for %1?&lt;/p&gt;&lt;p&gt;The local clone itself will not be affected.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Bist Du sicher, dass Du die Zuordnung zum entfernten Repository für %1 entfernen willst?&lt;/p&gt;&lt;p&gt;Der lokale Klon selber wird nicht betroffen sein.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="791"/>
+        <location filename="../src/ui/SideBar.cpp" line="789"/>
         <source>Remove Repository Association?</source>
         <translation>Zuordnung zu entferntem Repository entfernen?</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="815"/>
+        <location filename="../src/ui/SideBar.cpp" line="813"/>
         <source>Clear All Recent</source>
         <translation>&apos;Zuletzt geöffnet&apos; leeren</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="820"/>
+        <location filename="../src/ui/SideBar.cpp" line="818"/>
         <source>Show Full Path</source>
         <translation>Vollständigen Pfad anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="830"/>
+        <location filename="../src/ui/SideBar.cpp" line="828"/>
         <source>Filter Non-existent Paths</source>
         <translation>Non-Existente Pfade filtern</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="839"/>
+        <location filename="../src/ui/SideBar.cpp" line="837"/>
         <source>Refresh Remote Accounts</source>
         <translation>Entfernte Accounts aktualisieren</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="846"/>
+        <location filename="../src/ui/SideBar.cpp" line="844"/>
         <source>Show Full Name</source>
         <translation>Vollständigen Namen anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="880"/>
+        <location filename="../src/ui/SideBar.cpp" line="878"/>
         <source>&lt;p&gt;Are you sure you want to remove the %1 account for &apos;%2&apos;?&lt;/p&gt;&lt;p&gt;Only the account association will be removed. Remote configurations and local clones will not be affected.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Bist Du sicher, dass Du den %1-Account für &apos;%2&apos; entfernen möchtest?&lt;/p&gt;&lt;p&gt;Nur die Account-Zuordnung ist davon betroffen; Remote-Einstellungen und lokale Klone werden nicht betroffen sein.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/ui/SideBar.cpp" line="885"/>
+        <location filename="../src/ui/SideBar.cpp" line="883"/>
         <source>Remove Account?</source>
         <translation>Account entfernen?</translation>
     </message>

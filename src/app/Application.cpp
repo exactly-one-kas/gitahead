@@ -163,10 +163,11 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
   setStyleSheet(mTheme->styleSheet());
 
   // Load translation files.
+  QLocale locale;
   QDir l10n = Settings::l10nDir();
   QString name = QString(GITAHEAD_NAME).toLower();
   QTranslator *translator = new QTranslator(this);
-  if (translator->load(QLocale(), name, "_", l10n.absolutePath())) {
+  if (translator->load(locale, name, "_", l10n.absolutePath())) {
     installTranslator(translator);
   } else {
     delete translator;
@@ -174,11 +175,11 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
 
   // Load Qt translation file.
   QTranslator *qt = new QTranslator(this);
-  if (qt->load(QLocale(), "qt", "_", l10n.absolutePath())) {
+  if (qt->load(locale, "qtbase", "_", l10n.absolutePath())) {
     installTranslator(qt);
   } else {
     QDir dir(QT_TRANSLATIONS_DIR);
-    if (dir.exists() && qt->load(QLocale(), "qt", "_", dir.absolutePath())) {
+    if (dir.exists() && qt->load(locale, "qtbase", "_", dir.absolutePath())) {
       installTranslator(qt);
     } else {
       delete qt;
@@ -534,12 +535,13 @@ void Application::track(const QUrlQuery &query)
     return;
 
   QString sys = userAgentSystem();
+  QString language = QLocale().uiLanguages().first();
   QString userAgent = kUserAgentFmt.arg(GITAHEAD_NAME, GITAHEAD_VERSION, sys);
 
   QUrlQuery tmp = query;
   tmp.addQueryItem("v", "1");
   tmp.addQueryItem("ds", "app");
-  tmp.addQueryItem("ul", "en-us");
+  tmp.addQueryItem("ul", language);
   tmp.addQueryItem("ua", userAgent);
   tmp.addQueryItem("an", GITAHEAD_NAME);
   tmp.addQueryItem("av", GITAHEAD_VERSION);
