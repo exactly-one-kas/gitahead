@@ -2201,389 +2201,389 @@ Examples
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="504"/>
+        <location filename="../src/ui/MenuBar.cpp" line="502"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="506"/>
+        <location filename="../src/ui/MenuBar.cpp" line="504"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="519"/>
+        <location filename="../src/ui/MenuBar.cpp" line="517"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="534"/>
+        <location filename="../src/ui/MenuBar.cpp" line="532"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="547"/>
+        <location filename="../src/ui/MenuBar.cpp" line="545"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="562"/>
+        <location filename="../src/ui/MenuBar.cpp" line="560"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="575"/>
+        <location filename="../src/ui/MenuBar.cpp" line="573"/>
         <source>Select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="590"/>
+        <location filename="../src/ui/MenuBar.cpp" line="588"/>
         <source>Find...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="602"/>
+        <location filename="../src/ui/MenuBar.cpp" line="600"/>
         <source>Find Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="613"/>
+        <location filename="../src/ui/MenuBar.cpp" line="611"/>
         <source>Find Previous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="624"/>
+        <location filename="../src/ui/MenuBar.cpp" line="622"/>
         <source>Use Selection for Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="641"/>
+        <location filename="../src/ui/MenuBar.cpp" line="639"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="643"/>
+        <location filename="../src/ui/MenuBar.cpp" line="641"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="651"/>
-        <location filename="../src/ui/MenuBar.cpp" line="1174"/>
+        <location filename="../src/ui/MenuBar.cpp" line="649"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1172"/>
         <source>Show Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="658"/>
-        <location filename="../src/ui/MenuBar.cpp" line="1175"/>
+        <location filename="../src/ui/MenuBar.cpp" line="656"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1173"/>
         <source>Show Tree View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="667"/>
+        <location filename="../src/ui/MenuBar.cpp" line="665"/>
         <source>Repository</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="669"/>
+        <location filename="../src/ui/MenuBar.cpp" line="667"/>
         <source>Configure Repository...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="677"/>
+        <location filename="../src/ui/MenuBar.cpp" line="675"/>
         <source>Stage All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="683"/>
+        <location filename="../src/ui/MenuBar.cpp" line="681"/>
         <source>Unstage All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="691"/>
+        <location filename="../src/ui/MenuBar.cpp" line="689"/>
         <source>Commit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="697"/>
+        <location filename="../src/ui/MenuBar.cpp" line="695"/>
         <source>Amend Commit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="705"/>
+        <location filename="../src/ui/MenuBar.cpp" line="703"/>
         <source>Git LFS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="706"/>
+        <location filename="../src/ui/MenuBar.cpp" line="704"/>
         <source>Remove all locks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="714"/>
+        <location filename="../src/ui/MenuBar.cpp" line="712"/>
         <source>Initialize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="721"/>
+        <location filename="../src/ui/MenuBar.cpp" line="719"/>
         <source>Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="723"/>
+        <location filename="../src/ui/MenuBar.cpp" line="721"/>
         <source>Configure Remotes...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="732"/>
+        <location filename="../src/ui/MenuBar.cpp" line="730"/>
         <source>Fetch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="738"/>
+        <location filename="../src/ui/MenuBar.cpp" line="736"/>
         <source>Fetch All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="744"/>
+        <location filename="../src/ui/MenuBar.cpp" line="742"/>
         <source>Fetch From...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="753"/>
+        <location filename="../src/ui/MenuBar.cpp" line="751"/>
         <source>Pull</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="759"/>
+        <location filename="../src/ui/MenuBar.cpp" line="757"/>
         <source>Pull From...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="768"/>
+        <location filename="../src/ui/MenuBar.cpp" line="766"/>
         <source>Push</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="774"/>
+        <location filename="../src/ui/MenuBar.cpp" line="772"/>
         <source>Push To...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="782"/>
+        <location filename="../src/ui/MenuBar.cpp" line="780"/>
         <source>Branch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="784"/>
+        <location filename="../src/ui/MenuBar.cpp" line="782"/>
         <source>Configure Branches...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="791"/>
+        <location filename="../src/ui/MenuBar.cpp" line="789"/>
         <source>New Branch...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="799"/>
+        <location filename="../src/ui/MenuBar.cpp" line="797"/>
         <source>Checkout Current</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="810"/>
+        <location filename="../src/ui/MenuBar.cpp" line="808"/>
         <source>Checkout...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="818"/>
+        <location filename="../src/ui/MenuBar.cpp" line="816"/>
         <source>Merge...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="831"/>
+        <location filename="../src/ui/MenuBar.cpp" line="829"/>
         <source>Rebase...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="846"/>
+        <location filename="../src/ui/MenuBar.cpp" line="844"/>
         <source>Abort Merge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="853"/>
+        <location filename="../src/ui/MenuBar.cpp" line="851"/>
         <source>Submodule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="855"/>
+        <location filename="../src/ui/MenuBar.cpp" line="853"/>
         <source>Configure Submodules...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="864"/>
+        <location filename="../src/ui/MenuBar.cpp" line="862"/>
         <source>Update All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="870"/>
+        <location filename="../src/ui/MenuBar.cpp" line="868"/>
         <source>Update...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="886"/>
+        <location filename="../src/ui/MenuBar.cpp" line="884"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="905"/>
+        <location filename="../src/ui/MenuBar.cpp" line="903"/>
         <source>Stash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="907"/>
+        <location filename="../src/ui/MenuBar.cpp" line="905"/>
         <source>Show Stashes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="916"/>
+        <location filename="../src/ui/MenuBar.cpp" line="914"/>
         <source>Stash...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="922"/>
+        <location filename="../src/ui/MenuBar.cpp" line="920"/>
         <source>Pop Stash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="929"/>
+        <location filename="../src/ui/MenuBar.cpp" line="927"/>
         <source>History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="931"/>
+        <location filename="../src/ui/MenuBar.cpp" line="929"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="938"/>
+        <location filename="../src/ui/MenuBar.cpp" line="936"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="946"/>
+        <location filename="../src/ui/MenuBar.cpp" line="944"/>
         <source>Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="947"/>
+        <location filename="../src/ui/MenuBar.cpp" line="945"/>
         <source>Show Previous Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="956"/>
+        <location filename="../src/ui/MenuBar.cpp" line="954"/>
         <source>Show Next Tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="967"/>
+        <location filename="../src/ui/MenuBar.cpp" line="965"/>
         <source>Show Repository Chooser...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="972"/>
+        <location filename="../src/ui/MenuBar.cpp" line="970"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="973"/>
+        <location filename="../src/ui/MenuBar.cpp" line="971"/>
         <source>Options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="980"/>
+        <location filename="../src/ui/MenuBar.cpp" line="978"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="982"/>
+        <location filename="../src/ui/MenuBar.cpp" line="980"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="988"/>
+        <location filename="../src/ui/MenuBar.cpp" line="986"/>
         <source>Check For Updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="992"/>
+        <location filename="../src/ui/MenuBar.cpp" line="990"/>
         <source>Plugin Documentation...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1000"/>
+        <location filename="../src/ui/MenuBar.cpp" line="998"/>
         <source>Debug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1001"/>
+        <location filename="../src/ui/MenuBar.cpp" line="999"/>
         <source>Abort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1014"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1012"/>
         <source>Log Indexer Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1021"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1019"/>
         <source>Log Credential Helper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1028"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1026"/>
         <source>Log Remote Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1037"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1035"/>
         <source>Load All Diffs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1051"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1049"/>
         <source>Walk Commits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1174"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1172"/>
         <source>Hide Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1175"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1173"/>
         <source>Show Diff View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1224"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1222"/>
         <source>Merge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1234"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1232"/>
         <source>Revert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1240"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1238"/>
         <source>Cherry-pick</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1246"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1244"/>
         <source>Rebase</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1252"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1250"/>
         <source>Abort %1</source>
         <translation type="unfinished"></translation>
     </message>
