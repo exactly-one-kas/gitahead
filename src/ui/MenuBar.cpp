@@ -839,6 +839,19 @@ MenuBar::MenuBar(QWidget *parent)
     dialog->open();
   });
 
+  mSquash = branch->addAction(tr("Squash..."));
+  mSquash->setShortcut(tr("Ctrl+Shift+Q"));
+  connect(mSquash, &QAction::triggered, [this] {
+    RepoView *view = this->view();
+    MergeDialog *dialog =
+      new MergeDialog(RepoView::Squash, view->repo(), view);
+    connect(dialog, &QDialog::accepted, [view, dialog] {
+      view->merge(dialog->flags(), dialog->reference());
+    });
+
+    dialog->open();
+  });
+
   branch->addSeparator();
 
   mAbort = branch->addAction(tr("Abort Merge"));
@@ -1217,6 +1230,7 @@ void MenuBar::updateBranch()
 
   mMerge->setEnabled(head.isValid());
   mRebase->setEnabled(head.isValid());
+  mSquash->setEnabled(head.isValid());
 
   bool merging = false;
   QString text = tr("Merge");
