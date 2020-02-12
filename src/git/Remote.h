@@ -18,7 +18,7 @@
 #include <QString>
 #include <QSharedPointer>
 
-struct git_cred;
+struct git_credential;
 struct git_oid;
 struct git_remote;
 struct git_indexer_progress;
@@ -156,7 +156,7 @@ public:
       void *payload);
 
     static int credentials(
-      git_cred **out,
+      git_credential **out,
       const char *url,
       const char *name,
       unsigned int types,
