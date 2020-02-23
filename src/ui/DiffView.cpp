@@ -82,6 +82,15 @@ const QString kStyleSheet =
   "  padding-top: -2"
   "}";
 
+const QString kCompactSytleSheet =
+  "DiffView {"
+  "  padding-top: 0"
+  "}"
+  "DiffView HunkWidget, DiffView .QFrame {"
+  "  border-bottom-width: 4;"
+  "  border-top-width: 4;"
+  "}";
+
 const QString kButtonStyleFmt =
   "QToolButton {"
   "  background: %1"
@@ -1869,6 +1878,11 @@ public:
     setObjectName("FileWidget");
     layout = new QVBoxLayout(this);
 
+    if (Settings::instance()->value("diff/compact").toBool()) {
+      layout->setContentsMargins(0, 0, 0, 0);
+      layout->setSpacing(0);
+    }
+
     git::Repository repo = RepoView::parentView(this)->repo();
 
     QString name = patch.name();
@@ -2125,7 +2139,12 @@ private:
 DiffView::DiffView(const git::Repository &repo, QWidget *parent)
   : QScrollArea(parent)
 {
-  setStyleSheet(kStyleSheet);
+  QString styleSheet = kStyleSheet;
+
+  if (Settings::instance()->value("diff/compact").toBool())
+    styleSheet += kCompactSytleSheet;
+
+  setStyleSheet(styleSheet);
   setAcceptDrops(true);
   setWidgetResizable(true);
   setFocusPolicy(Qt::NoFocus);
@@ -2201,6 +2220,11 @@ void DiffView::setDiff(const git::Diff &diff)
   QVBoxLayout *layout = new QVBoxLayout(widget);
   layout->setSpacing(4);
   layout->setSizeConstraint(QLayout::SetMinAndMaxSize);
+
+  if (Settings::instance()->value("diff/compact").toBool()) {
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+  }
 
   if (!diff.isValid()) {
     if (repo.isHeadUnborn()) {
