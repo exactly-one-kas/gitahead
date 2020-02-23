@@ -1937,7 +1937,8 @@ public:
       expand = false;
 
     if (Settings::instance()->value("collapse/added").toBool() == true &&
-        patch.status() == GIT_DELTA_ADDED)
+        (patch.status() == GIT_DELTA_ADDED ||
+        mPatch.isUntracked()))
       expand = false;
 
     if (Settings::instance()->value("collapse/deleted").toBool() == true &&
