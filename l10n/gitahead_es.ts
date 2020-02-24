@@ -2187,17 +2187,17 @@ Ejemplos
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="405"/>
+        <location filename="../src/ui/MenuBar.cpp" line="411"/>
         <source>File</source>
         <translation>Archivo</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="407"/>
+        <location filename="../src/ui/MenuBar.cpp" line="413"/>
         <source>New File</source>
         <translation>Nuevo Archivo</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="421"/>
+        <location filename="../src/ui/MenuBar.cpp" line="427"/>
         <source>New Window</source>
         <translation>Nueva Ventana</translation>
     </message>
@@ -2206,7 +2206,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Meta+N</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="427"/>
+        <location filename="../src/ui/MenuBar.cpp" line="433"/>
         <source>Clone Repository...</source>
         <translation>Clonar Repositorio...</translation>
     </message>
@@ -2215,7 +2215,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+N</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="433"/>
+        <location filename="../src/ui/MenuBar.cpp" line="439"/>
         <source>Initialize New Repository...</source>
         <translation>Inicializar Nuevo Repositorio...</translation>
     </message>
@@ -2224,87 +2224,87 @@ Ejemplos
         <translation type="vanished">Ctrl+Alt+N</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="441"/>
+        <location filename="../src/ui/MenuBar.cpp" line="447"/>
         <source>Open Repository...</source>
         <translation>Abrir Repositorio...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="446"/>
+        <location filename="../src/ui/MenuBar.cpp" line="452"/>
         <source>Open Repository</source>
         <translation>Abrir Repositorio</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="453"/>
+        <location filename="../src/ui/MenuBar.cpp" line="459"/>
         <source>Open Recent</source>
         <translation>Abrir Reciente</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="468"/>
+        <location filename="../src/ui/MenuBar.cpp" line="474"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="485"/>
+        <location filename="../src/ui/MenuBar.cpp" line="491"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="495"/>
+        <location filename="../src/ui/MenuBar.cpp" line="501"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="502"/>
+        <location filename="../src/ui/MenuBar.cpp" line="508"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="504"/>
+        <location filename="../src/ui/MenuBar.cpp" line="510"/>
         <source>Undo</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="517"/>
+        <location filename="../src/ui/MenuBar.cpp" line="523"/>
         <source>Redo</source>
         <translation>Rehacer</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="532"/>
+        <location filename="../src/ui/MenuBar.cpp" line="538"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="545"/>
+        <location filename="../src/ui/MenuBar.cpp" line="551"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="560"/>
+        <location filename="../src/ui/MenuBar.cpp" line="566"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="573"/>
+        <location filename="../src/ui/MenuBar.cpp" line="579"/>
         <source>Select All</source>
         <translation>Seleccionar Todo</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="588"/>
+        <location filename="../src/ui/MenuBar.cpp" line="594"/>
         <source>Find...</source>
         <translation>Encontrar...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="600"/>
+        <location filename="../src/ui/MenuBar.cpp" line="606"/>
         <source>Find Next</source>
         <translation>Encontrar Siguiente</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="611"/>
+        <location filename="../src/ui/MenuBar.cpp" line="617"/>
         <source>Find Previous</source>
         <translation>Encontrar Previo</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="622"/>
+        <location filename="../src/ui/MenuBar.cpp" line="628"/>
         <source>Use Selection for Find</source>
         <translation>Usar la Selección para Encontrar</translation>
     </message>
@@ -2313,39 +2313,39 @@ Ejemplos
         <translation type="vanished">Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="639"/>
+        <location filename="../src/ui/MenuBar.cpp" line="645"/>
         <source>View</source>
         <translation>Ver</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="641"/>
+        <location filename="../src/ui/MenuBar.cpp" line="647"/>
         <source>Refresh</source>
         <translation>Refrescar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="649"/>
-        <location filename="../src/ui/MenuBar.cpp" line="1185"/>
+        <location filename="../src/ui/MenuBar.cpp" line="655"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1191"/>
         <source>Show Log</source>
         <translation>Mostrar Histórico</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="656"/>
-        <location filename="../src/ui/MenuBar.cpp" line="1186"/>
+        <location filename="../src/ui/MenuBar.cpp" line="662"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1192"/>
         <source>Show Tree View</source>
         <translation>Mostrar Vista de Árbol</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="665"/>
+        <location filename="../src/ui/MenuBar.cpp" line="671"/>
         <source>Repository</source>
         <translation>Repositorio</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="667"/>
+        <location filename="../src/ui/MenuBar.cpp" line="673"/>
         <source>Configure Repository...</source>
         <translation>Configurar Repositorio...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="675"/>
+        <location filename="../src/ui/MenuBar.cpp" line="681"/>
         <source>Stage All</source>
         <translation>Preparar Todo</translation>
     </message>
@@ -2354,7 +2354,7 @@ Ejemplos
         <translation type="vanished">Ctrl++</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="681"/>
+        <location filename="../src/ui/MenuBar.cpp" line="687"/>
         <source>Unstage All</source>
         <translation>No Preparar Nada</translation>
     </message>
@@ -2363,7 +2363,7 @@ Ejemplos
         <translation type="vanished">Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="689"/>
+        <location filename="../src/ui/MenuBar.cpp" line="695"/>
         <source>Commit</source>
         <translation>Confirmar</translation>
     </message>
@@ -2372,7 +2372,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+C</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="695"/>
+        <location filename="../src/ui/MenuBar.cpp" line="701"/>
         <source>Amend Commit</source>
         <translation>Enmendar Confirmación</translation>
     </message>
@@ -2381,32 +2381,32 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="703"/>
+        <location filename="../src/ui/MenuBar.cpp" line="709"/>
         <source>Git LFS</source>
         <translation>Git LFS</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="704"/>
+        <location filename="../src/ui/MenuBar.cpp" line="710"/>
         <source>Remove all locks</source>
         <translation>Remover todos los bloqueos</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="712"/>
+        <location filename="../src/ui/MenuBar.cpp" line="718"/>
         <source>Initialize</source>
         <translation>Inicializar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="719"/>
+        <location filename="../src/ui/MenuBar.cpp" line="725"/>
         <source>Remote</source>
         <translation>Remoto</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="721"/>
+        <location filename="../src/ui/MenuBar.cpp" line="727"/>
         <source>Configure Remotes...</source>
         <translation>Configurar Remotos...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="730"/>
+        <location filename="../src/ui/MenuBar.cpp" line="736"/>
         <source>Fetch</source>
         <translation>Traer</translation>
     </message>
@@ -2415,7 +2415,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+F</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="736"/>
+        <location filename="../src/ui/MenuBar.cpp" line="742"/>
         <source>Fetch All</source>
         <translation>Traer Todo</translation>
     </message>
@@ -2424,7 +2424,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+A</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="742"/>
+        <location filename="../src/ui/MenuBar.cpp" line="748"/>
         <source>Fetch From...</source>
         <translation>Traer Desde...</translation>
     </message>
@@ -2433,7 +2433,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+F</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="751"/>
+        <location filename="../src/ui/MenuBar.cpp" line="757"/>
         <source>Pull</source>
         <translation>Combinar</translation>
     </message>
@@ -2442,7 +2442,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+L</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="757"/>
+        <location filename="../src/ui/MenuBar.cpp" line="763"/>
         <source>Pull From...</source>
         <translation>Combinar Desde...</translation>
     </message>
@@ -2451,7 +2451,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+L</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="766"/>
+        <location filename="../src/ui/MenuBar.cpp" line="772"/>
         <source>Push</source>
         <translation>Enviar</translation>
     </message>
@@ -2460,7 +2460,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+P</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="772"/>
+        <location filename="../src/ui/MenuBar.cpp" line="778"/>
         <source>Push To...</source>
         <translation>Enviar a...</translation>
     </message>
@@ -2469,22 +2469,22 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="780"/>
+        <location filename="../src/ui/MenuBar.cpp" line="786"/>
         <source>Branch</source>
         <translation>Rama</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="782"/>
+        <location filename="../src/ui/MenuBar.cpp" line="788"/>
         <source>Configure Branches...</source>
         <translation>Configurar Ramas...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="789"/>
+        <location filename="../src/ui/MenuBar.cpp" line="795"/>
         <source>New Branch...</source>
         <translation>Nueva rama...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="797"/>
+        <location filename="../src/ui/MenuBar.cpp" line="803"/>
         <source>Checkout Current</source>
         <translation>Revisar Actual</translation>
     </message>
@@ -2493,7 +2493,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+H</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="808"/>
+        <location filename="../src/ui/MenuBar.cpp" line="814"/>
         <source>Checkout...</source>
         <translation>Revisar...</translation>
     </message>
@@ -2502,7 +2502,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+H</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="816"/>
+        <location filename="../src/ui/MenuBar.cpp" line="822"/>
         <source>Merge...</source>
         <translation>Fusionar...</translation>
     </message>
@@ -2511,7 +2511,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+M</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="829"/>
+        <location filename="../src/ui/MenuBar.cpp" line="835"/>
         <source>Rebase...</source>
         <translation>Reorganizar...</translation>
     </message>
@@ -2520,32 +2520,27 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+R</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="842"/>
+        <location filename="../src/ui/MenuBar.cpp" line="848"/>
         <source>Squash...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="843"/>
-        <source>Ctrl+Shift+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/MenuBar.cpp" line="857"/>
+        <location filename="../src/ui/MenuBar.cpp" line="863"/>
         <source>Abort Merge</source>
         <translation>Abortar Fusión</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="864"/>
+        <location filename="../src/ui/MenuBar.cpp" line="870"/>
         <source>Submodule</source>
         <translation>Submódulo</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="866"/>
+        <location filename="../src/ui/MenuBar.cpp" line="872"/>
         <source>Configure Submodules...</source>
         <translation>Configurar Submódulos...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="875"/>
+        <location filename="../src/ui/MenuBar.cpp" line="881"/>
         <source>Update All</source>
         <translation>Actualizar Todo</translation>
     </message>
@@ -2554,7 +2549,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+U</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="881"/>
+        <location filename="../src/ui/MenuBar.cpp" line="887"/>
         <source>Update...</source>
         <translation>Actualizar...</translation>
     </message>
@@ -2563,22 +2558,22 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+U</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="897"/>
+        <location filename="../src/ui/MenuBar.cpp" line="903"/>
         <source>Open</source>
         <translation>Abrir</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="916"/>
+        <location filename="../src/ui/MenuBar.cpp" line="922"/>
         <source>Stash</source>
         <translation>Guardado Rápido</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="918"/>
+        <location filename="../src/ui/MenuBar.cpp" line="924"/>
         <source>Show Stashes</source>
         <translation>Mostrar Guardados Rápidos</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="927"/>
+        <location filename="../src/ui/MenuBar.cpp" line="933"/>
         <source>Stash...</source>
         <translation>Guardado Rápido...</translation>
     </message>
@@ -2587,7 +2582,7 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+T</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="933"/>
+        <location filename="../src/ui/MenuBar.cpp" line="939"/>
         <source>Pop Stash</source>
         <translation>Sacar Guardado Rápido</translation>
     </message>
@@ -2596,37 +2591,37 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+Alt+T</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="940"/>
+        <location filename="../src/ui/MenuBar.cpp" line="946"/>
         <source>History</source>
         <translation>Historia</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="942"/>
+        <location filename="../src/ui/MenuBar.cpp" line="948"/>
         <source>Back</source>
         <translation>Atrás</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="949"/>
+        <location filename="../src/ui/MenuBar.cpp" line="955"/>
         <source>Forward</source>
         <translation>Adelante</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="957"/>
+        <location filename="../src/ui/MenuBar.cpp" line="963"/>
         <source>Window</source>
         <translation>Ventana</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="958"/>
+        <location filename="../src/ui/MenuBar.cpp" line="964"/>
         <source>Show Previous Tab</source>
         <translation>Mostrar Pestaña Anterior</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="967"/>
+        <location filename="../src/ui/MenuBar.cpp" line="973"/>
         <source>Show Next Tab</source>
         <translation>Mostrar Próxima Pestaña</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="978"/>
+        <location filename="../src/ui/MenuBar.cpp" line="984"/>
         <source>Show Repository Chooser...</source>
         <translation>Mostrar Selector de Repositorio...</translation>
     </message>
@@ -2635,102 +2630,102 @@ Ejemplos
         <translation type="vanished">Ctrl+Shift+O</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="983"/>
+        <location filename="../src/ui/MenuBar.cpp" line="989"/>
         <source>Tools</source>
         <translation>Herramientas</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="984"/>
+        <location filename="../src/ui/MenuBar.cpp" line="990"/>
         <source>Options...</source>
         <translation>Opciones...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="991"/>
+        <location filename="../src/ui/MenuBar.cpp" line="997"/>
         <source>Help</source>
         <translation>Ayuda</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="993"/>
+        <location filename="../src/ui/MenuBar.cpp" line="999"/>
         <source>About %1</source>
         <translation>Acerca de %1</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="999"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1005"/>
         <source>Check For Updates...</source>
         <translation>Buscar Actualizaciones...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1003"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1009"/>
         <source>Plugin Documentation...</source>
         <translation>Documentación de Plugin...</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1011"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1017"/>
         <source>Debug</source>
         <translation>Depurar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1012"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1018"/>
         <source>Abort</source>
         <translation>Abortar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1025"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1031"/>
         <source>Log Indexer Progress</source>
         <translation>Histórico del Progreso del indexador</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1032"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1038"/>
         <source>Log Credential Helper</source>
         <translation>Histórico de la Ayuda de Credenciales</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1039"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1045"/>
         <source>Log Remote Connection</source>
         <translation>Histórico de Conexión Remota</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1048"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1054"/>
         <source>Load All Diffs</source>
         <translation>Cargar Todas las Diferencias</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1062"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1068"/>
         <source>Walk Commits</source>
         <translation>Recorrer las Confirmaciones</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1185"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1191"/>
         <source>Hide Log</source>
         <translation>Ocultar Histórico</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1186"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1192"/>
         <source>Show Diff View</source>
         <translation>Mostrar Vista de Diferencias</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1236"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1242"/>
         <source>Merge</source>
         <translation>Fusionar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1246"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1252"/>
         <source>Revert</source>
         <translation>Revertir</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1252"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1258"/>
         <source>Cherry-pick</source>
         <translation>Escoger</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1258"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1264"/>
         <source>Rebase</source>
         <translation>Reorganizar</translation>
     </message>
     <message>
-        <location filename="../src/ui/MenuBar.cpp" line="1264"/>
+        <location filename="../src/ui/MenuBar.cpp" line="1270"/>
         <source>Abort %1</source>
         <translation>Abortar %1</translation>
     </message>
