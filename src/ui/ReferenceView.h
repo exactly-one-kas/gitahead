@@ -57,6 +57,7 @@ protected:
 
 private:
   bool mPopup;
+  void *mSource;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ReferenceView::Kinds);

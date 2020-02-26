@@ -386,6 +386,7 @@ ReferenceView::ReferenceView(
   // Set model.
   FilterProxyModel *model = new FilterProxyModel(this);
   ReferenceModel *source = new ReferenceModel(repo, kinds, this);
+  mSource = source;
   model->setSourceModel(source);
   setModel(model);
 
@@ -505,23 +506,26 @@ void ReferenceView::contextMenuEvent(QContextMenuEvent *event)
     rename->setEnabled(!ref.isHead());
   }
 
-  if (ref.isTag() || ref.isLocalBranch()) {
-    QAction *remove = menu.addAction(tr("Delete"), [this, ref] {
-      if (ref.isTag()) {
-        DeleteTagDialog *dialog = new DeleteTagDialog(ref, this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->open();
+  QAction *remove = menu.addAction(tr("Delete"), [this, ref] {
+    if (ref.isTag()) {
+      DeleteTagDialog *dialog = new DeleteTagDialog(ref, this);
+      dialog->setAttribute(Qt::WA_DeleteOnClose);
+      dialog->open();
 
-      } else {
-        DeleteBranchDialog *dialog = new DeleteBranchDialog(ref, this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->open();
-      }
-    });
+    } else {
+      DeleteBranchDialogEvents *events = new DeleteBranchDialogEvents();
+      events->setDeleteAfterDone();
 
-    remove->setEnabled(ref.isTag() || !ref.isHead());
+      DeleteBranchDialog *dialog = new DeleteBranchDialog(ref, this, events);
+      connect(events, &DeleteBranchDialogEvents::remoteBranchDeleted, [this] {
+        static_cast<ReferenceModel*>(mSource)->update();
+      });
+      dialog->setAttribute(Qt::WA_DeleteOnClose);
+      dialog->open();
+    }
+  });
 
-  }
+  remove->setEnabled(ref.isTag() || !ref.isHead());
 
   if (ref.isTag()) {
     git::Remote remote = ref.repo().defaultRemote();

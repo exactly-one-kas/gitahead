@@ -145,7 +145,7 @@ ReferenceWidget::ReferenceWidget(
   header->addWidget(button);
 
   mView = new ReferenceView(repo, kinds, false, this);
-  mView->setSelectionModel(new SelectionModel(mView->model(), repo));
+  // mView->setSelectionModel(new SelectionModel(mView->model(), repo));
 
   QVBoxLayout *layout = new QVBoxLayout(this);
   layout->setContentsMargins(0,0,0,0);
