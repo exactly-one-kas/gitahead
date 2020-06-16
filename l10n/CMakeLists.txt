@@ -6,6 +6,7 @@ set(LANGUAGES
   de
   en
   es
+  pt_BR
 )
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
@@ -38,8 +39,10 @@ endforeach()
 set(MAC $<PLATFORM_ID:Darwin>)
 set(CONTENTS_DIR ${GITAHEAD_NAME}.app/Contents)
 foreach(QM_FILE ${QM_FILES} ${QT_QM_FILES})
-  install(FILES ${QM_FILE}
-    DESTINATION $<${MAC}:${CONTENTS_DIR}/>Resources/l10n
-    COMPONENT ${GITAHEAD_NAME}
-  )
+  if(EXISTS ${QM_FILE})
+    install(FILES ${QM_FILE}
+      DESTINATION $<${MAC}:${CONTENTS_DIR}/>Resources/l10n
+      COMPONENT ${GITAHEAD_NAME}
+    )
+  endif()
 endforeach()

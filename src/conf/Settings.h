@@ -24,7 +24,9 @@ public:
     PromptStash,
     PromptMerge,
     PromptRevert,
-    PromptCherryPick
+    PromptCherryPick,
+    PromptDirectories,
+    PromptLargeFiles
   };
 
   const QString SORT_NAME_CASE = "sort/name/case";

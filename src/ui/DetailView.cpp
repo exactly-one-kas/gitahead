@@ -35,6 +35,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QPainter>
+#include <QPainterPath>
 #include <QPushButton>
 #include <QRegularExpression>
 #include <QStackedWidget>

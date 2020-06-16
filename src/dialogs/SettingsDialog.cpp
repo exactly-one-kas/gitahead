@@ -226,7 +226,7 @@ public:
 
     mPushCommit->setChecked(settings->value("autopush/enable").toBool());
     mPullUpdate->setChecked(settings->value("autoupdate/enable").toBool());
-    mPullUpdate->setChecked(settings->value("autoprune/enable").toBool());
+    mAutoPrune->setChecked(settings->value("autoprune/enable").toBool());
     settings->endGroup();
 
     mStoreCredentials->setChecked(settings->value("credential/store").toBool());
@@ -527,6 +527,20 @@ public:
       Settings::instance()->setPrompt(Settings::PromptStash, checked);
     });
 
+    QString largeFilesText = settings->promptDescription(Settings::PromptLargeFiles);
+    QCheckBox *largeFiles = new QCheckBox(largeFilesText, this);
+    largeFiles->setChecked(settings->prompt(Settings::PromptLargeFiles));
+    connect(largeFiles, &QCheckBox::toggled, [](bool checked) {
+      Settings::instance()->setPrompt(Settings::PromptLargeFiles, checked);
+    });
+
+    QString directoriesText = settings->promptDescription(Settings::PromptDirectories);
+    QCheckBox *directories = new QCheckBox(directoriesText, this);
+    directories->setChecked(settings->prompt(Settings::PromptDirectories));
+    connect(directories, &QCheckBox::toggled, [](bool checked) {
+      Settings::instance()->setPrompt(Settings::PromptDirectories, checked);
+    });
+
     QFormLayout *layout = new QFormLayout(this);
 
     layout->addRow(tr("Theme:"), comboBox);
@@ -538,6 +552,8 @@ public:
     layout->addRow(QString(), revert);
     layout->addRow(QString(), cherryPick);
     layout->addRow(QString(), stash);
+    layout->addRow(QString(), directories);
+    layout->addRow(QString(), largeFiles);
   }
 };
 
@@ -654,6 +670,8 @@ public:
 
 class MiscPanel : public QWidget
 {
+  Q_OBJECT
+
 public:
   MiscPanel(QWidget *parent = nullptr)
     : QWidget(parent)
