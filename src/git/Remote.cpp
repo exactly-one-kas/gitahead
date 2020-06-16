@@ -563,7 +563,7 @@ void Remote::setName(const QString &name)
     return;
 
   // FIXME: Report problems?
-  git_strarray_free(&problems);
+  git_strarray_dispose(&problems);
 }
 
 QString Remote::url() const
