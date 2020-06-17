@@ -42,6 +42,7 @@
 #include "index/Index.h"
 #include "log/LogEntry.h"
 #include "log/LogView.h"
+#include "tools/ShowTool.h"
 #include "watcher/RepositoryWatcher.h"
 #include <QCheckBox>
 #include <QCloseEvent>
