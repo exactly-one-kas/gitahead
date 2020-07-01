@@ -59,7 +59,7 @@ if(UNIX)
   set(QT_MODULES ${QT_MODULES} DBus)
 endif()
 
-find_package(Qt5 5.9 COMPONENTS ${QT_MODULES} LinguistTools REQUIRED)
+find_package(Qt5 5.15 COMPONENTS ${QT_MODULES} LinguistTools REQUIRED)
 
 set(QT_TRANSLATIONS_DIR "${Qt5_DIR}/../../../translations")
 

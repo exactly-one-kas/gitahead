@@ -163,6 +163,10 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
   setStyle(mTheme->style());
   setStyleSheet(mTheme->styleSheet());
 
+  auto palette = this->palette();
+  mTheme->polish(palette);
+  this->setPalette(palette);
+
   if (!parser.isSet("no-translation")) {
     // Load translation files.
     QLocale locale;
