@@ -12,6 +12,7 @@
 #include "conf/Settings.h"
 #include <QFocusEvent>
 #include <QMainWindow>
+#include <QScrollBar>
 #include <QStyle>
 #include <QWindow>
 
@@ -112,7 +113,7 @@ TextEditor::TextEditor(QWidget *parent)
   bool dark = (text.lightnessF() > base.lightnessF());
 
   setLexerLanguage("lpeg");
-  setProperty("lexer.lpeg.lexers", Settings::lexerDir().path());
+  setProperty("lexer.lpeg.home", Settings::lexerDir().path());
   setProperty("lexer.lpeg.themes", theme->dir().path());
   setProperty("lexer.lpeg.theme", theme->name());
   setProperty("lexer.lpeg.theme.mode", dark ? "dark" : "light");
@@ -122,6 +123,10 @@ TextEditor::TextEditor(QWidget *parent)
   applySettings();
   connect(Settings::instance(), &Settings::settingsChanged,
           this, &TextEditor::applySettings);
+
+  // Update geometry when the scroll bar becomes visible.
+  connect(horizontalScrollBar(), &QScrollBar::rangeChanged,
+          this, &TextEditor::updateGeometry);
 }
 
 void TextEditor::applySettings()
@@ -362,7 +367,12 @@ QSize TextEditor::viewportSizeHint() const
   int lines = annotationLines(line) + 1;
   int height = const_cast<TextEditor *>(this)->textHeight(line);
   int y = const_cast<TextEditor *>(this)->pointFromPosition(length()).y();
-  return QSize(size.width(), y + (lines * height));
+
+  int scrollBarHeight = 0;
+  if (Editor::scrollWidth > width())
+    scrollBarHeight = horizontalScrollBar()->height();
+
+  return QSize(size.width(), y + (lines * height) + scrollBarHeight);
 }
 
 int TextEditor::diagnosticMarker(int line)

@@ -149,7 +149,8 @@ public:
     mTimer.start(50);
     mStatus.setFuture(QtConcurrent::run([this] {
       // Pass the repo's index to suppress reload.
-      return mRepo.status(mRepo.index(), &mStatusCallbacks);
+      bool ignoreWhitespace = Settings::instance()->isWhitespaceIgnored();
+      return mRepo.status(mRepo.index(), &mStatusCallbacks, ignoreWhitespace);
     }));
   }
 
@@ -377,7 +378,8 @@ public:
         if (status)
           return QVariant::fromValue(this->status());
 
-        git::Diff diff = row.commit.diff();
+        bool ignoreWhitespace = Settings::instance()->isWhitespaceIgnored();
+        git::Diff diff = row.commit.diff(git::Commit(), -1, ignoreWhitespace);
         diff.findSimilar();
         return QVariant::fromValue(diff);
       }
@@ -623,7 +625,9 @@ public:
   {
     switch (role) {
       case DiffRole: {
-        git::Diff diff = mCommits.at(index.row()).diff();
+        git::Commit commit = mCommits.at(index.row());
+        bool ignoreWhitespace = Settings::instance()->isWhitespaceIgnored();
+        git::Diff diff = commit.diff(git::Commit(), -1, ignoreWhitespace);
         diff.findSimilar();
         return QVariant::fromValue(diff);
       }
@@ -1247,7 +1251,8 @@ git::Diff CommitList::selectedDiff() const
     return git::Diff();
 
   git::Commit last = indexes.last().data(CommitRole).value<git::Commit>();
-  git::Diff diff = first.diff(last);
+  bool ignoreWhitespace = Settings::instance()->isWhitespaceIgnored();
+  git::Diff diff = first.diff(last, -1, ignoreWhitespace);
   diff.findSimilar();
   return diff;
 }
@@ -1469,7 +1474,7 @@ void CommitList::contextMenuEvent(QContextMenuEvent *event)
     // multiple selection
     bool anyStarred = false;
     foreach (const QModelIndex &index, selectionModel()->selectedIndexes()) {
-      if (index.data(CommitRole).value<git::Commit>().isStarred()) {
+      if (index.data(CommitRole).isValid() && index.data(CommitRole).value<git::Commit>().isStarred()) {
         anyStarred = true;
         break;
       }
@@ -1477,7 +1482,8 @@ void CommitList::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addAction(anyStarred ? tr("Unstar") : tr("Star"), [this, anyStarred] {
       foreach (const QModelIndex &index, selectionModel()->selectedIndexes())
-        index.data(CommitRole).value<git::Commit>().setStarred(!anyStarred);
+        if (index.data(CommitRole).isValid())
+          index.data(CommitRole).value<git::Commit>().setStarred(!anyStarred);
     });
 
     // single selection
@@ -1485,12 +1491,35 @@ void CommitList::contextMenuEvent(QContextMenuEvent *event)
       menu.addSeparator();
 
       menu.addAction(tr("Add Tag..."), [view, commit] {
-        view->promptToTag(commit);
+        view->promptToAddTag(commit);
       });
 
       menu.addAction(tr("New Branch..."), [view, commit] {
         view->promptToCreateBranch(commit);
       });
+
+      bool separator = true;
+      foreach (const git::Reference &ref, commit.refs()) {
+        if (ref.isTag()) {
+          if (separator) {
+            menu.addSeparator();
+            separator = false;
+          }
+          menu.addAction(tr("Delete Tag %1").arg(ref.name()), [view, ref] {
+            view->promptToDeleteTag(ref);
+          });
+        }
+        if (ref.isLocalBranch() &&
+           (view->repo().head().name() != ref.name())) {
+          if (separator) {
+            menu.addSeparator();
+            separator = false;
+          }
+          menu.addAction(tr("Delete Branch %1").arg(ref.name()), [view, ref] {
+            view->promptToDeleteBranch(ref);
+          });
+        }
+      }
 
       menu.addSeparator();
 

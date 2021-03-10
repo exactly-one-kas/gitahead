@@ -254,6 +254,7 @@ public:
     const git::Branch &upstream = git::Branch(),
     bool checkout = false,
     bool force = false);
+  void promptToDeleteBranch(const git::Reference &ref);
 
   // stash
   void promptToStash();
@@ -263,7 +264,8 @@ public:
   void popStash(int index = 0);
 
   // tag
-  void promptToTag(const git::Commit &commit);
+  void promptToAddTag(const git::Commit &commit);
+  void promptToDeleteTag(const git::Reference &ref);
 
   // reset
   void promptToReset(

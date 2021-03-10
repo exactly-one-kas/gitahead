@@ -25,6 +25,8 @@
 #include "conf/Settings.h"
 #include "dialogs/CheckoutDialog.h"
 #include "dialogs/CommitDialog.h"
+#include "dialogs/DeleteBranchDialog.h"
+#include "dialogs/DeleteTagDialog.h"
 #include "dialogs/NewBranchDialog.h"
 #include "dialogs/RebaseConflictDialog.h"
 #include "dialogs/RemoteDialog.h"
@@ -410,7 +412,7 @@ RepoView::RepoView(const git::Repository &repo, MainWindow *parent)
   });
 
   connect(notifier, &git::RepositoryNotifier::indexStageError, this, [this] {
-    error(mLogRoot, "stage");
+    error(mLogRoot, tr("stage"));
   });
 
   QObject *context = new QObject(this);
@@ -773,7 +775,7 @@ void RepoView::lfsInitialize()
 {
   LogEntry *entry = addLogEntry(tr("Git LFS"), tr("Initialize"));
   if (!mRepo.lfsInitialize()) {
-    error(entry, "initialize");
+    error(entry, tr("initialize"));
     return;
   }
 
@@ -784,7 +786,7 @@ void RepoView::lfsDeinitialize()
 {
   LogEntry *entry = addLogEntry(tr("Git LFS"), tr("Deinitialize"));
   if (!mRepo.lfsDeinitialize()) {
-    error(entry, "deinitialize");
+    error(entry, tr("deinitialize"));
     return;
   }
 
@@ -1177,9 +1179,7 @@ void RepoView::merge(
   LogEntry *parent,
   const std::function<void()> &callback)
 {
-  // Shouldn't be called with an unborn HEAD.
   git::Reference head = mRepo.head();
-  Q_ASSERT(head.isValid());
 
   git::AnnotatedCommit upstream;
   QString upstreamName = tr("<i>no upstream</i>");
@@ -1189,7 +1189,7 @@ void RepoView::merge(
   } else if (ref.isValid()) {
     upstream = ref.annotatedCommit();
     upstreamName = ref.name();
-  } else if (head.isBranch()) {
+  } else if (head.isValid() && head.isBranch()) {
     git::Branch headBranch = head;
     upstream = headBranch.annotatedCommitFromFetchHead();
     git::Branch up = headBranch.upstream();
@@ -1215,9 +1215,16 @@ void RepoView::merge(
     textFmt = tr("%2 on %1");
   }
 
-  QString headName = head.name();
+  QString headName = head.isValid() ? head.name() : tr("<i>no branch</i>");
   QString text = textFmt.arg(upstreamName, headName);
   LogEntry *entry = addLogEntry(text, title, parent);
+
+  // Empty repository.
+  if (!head.isValid()) {
+    entry->addEntry(LogEntry::Error,
+      tr("The repository is empty."));
+    return;
+  }
 
   // Validate inputs.
   if (!upstream.isValid()) {
@@ -1386,13 +1393,17 @@ void RepoView::mergeAbort(LogEntry *parent)
   if (!commit.isValid())
     return;
 
+  bool ignoreWhitespace = Settings::instance()->isWhitespaceIgnored();
+
   QSet<QString> paths;
-  git::Diff index = mRepo.diffTreeToIndex(commit.tree());
+  git::Diff index =
+    mRepo.diffTreeToIndex(commit.tree(), git::Index(), ignoreWhitespace);
   for (int i = 0; i < index.count(); ++i)
     paths.insert(index.name(i));
 
   QStringList conflicts;
-  git::Diff workdir = mRepo.diffIndexToWorkdir();
+  git::Diff workdir =
+    mRepo.diffIndexToWorkdir(git::Index(), nullptr, ignoreWhitespace);
   for (int i = 0; i < workdir.count(); ++i) {
     QString name = workdir.name(i);
     if (workdir.status(i) != GIT_DELTA_CONFLICTED && paths.contains(name))
@@ -2104,6 +2115,13 @@ git::Branch RepoView::createBranch(
   return branch;
 }
 
+void RepoView::promptToDeleteBranch(const git::Reference &ref)
+{
+  DeleteBranchDialog *dialog = new DeleteBranchDialog(ref, this);
+  dialog->setAttribute(Qt::WA_DeleteOnClose);
+  dialog->open();
+}
+
 void RepoView::promptToStash()
 {
   // Prompt to edit stash commit message.
@@ -2183,7 +2201,7 @@ void RepoView::popStash(int index)
   refresh();
 }
 
-void RepoView::promptToTag(const git::Commit &commit)
+void RepoView::promptToAddTag(const git::Commit &commit)
 {
   TagDialog *dialog = new TagDialog(mRepo, commit.shortId(),
     mRepo.defaultRemote(), this);
@@ -2212,6 +2230,13 @@ void RepoView::promptToTag(const git::Commit &commit)
       push(remote, tag);
   });
 
+  dialog->open();
+}
+
+void RepoView::promptToDeleteTag(const git::Reference &ref)
+{
+  DeleteTagDialog *dialog = new DeleteTagDialog(ref, this);
+  dialog->setAttribute(Qt::WA_DeleteOnClose);
   dialog->open();
 }
 

@@ -276,6 +276,8 @@ protected:
 
 class EditButton : public Button
 {
+  Q_OBJECT
+
 public:
   EditButton(
     const git::Patch &patch,
@@ -302,7 +304,7 @@ public:
     }
 
     if (view->repo().workdir().exists(name)) {
-      QAction *action = menu->addAction("Edit Working Copy");
+      QAction *action = menu->addAction(tr("Edit Working Copy"));
       connect(action, &QAction::triggered, [this, view, name, newLine] {
         view->edit(name, newLine);
       });
@@ -313,7 +315,7 @@ public:
     git::Commit commit = !commits.isEmpty() ? commits.first() : git::Commit();
     git::Blob newBlob = patch.blob(git::Diff::NewFile);
     if (newBlob.isValid()) {
-      QAction *action = menu->addAction("Edit New Revision");
+      QAction *action = menu->addAction(tr("Edit New Revision"));
       connect(action, &QAction::triggered,
       [this, view, name, newLine, newBlob, commit] {
         view->openEditor(name, newLine, newBlob, commit);
@@ -328,18 +330,15 @@ public:
           commit = parents.first();
       }
 
-      QAction *action = menu->addAction("Edit Old Revision");
+      QAction *action = menu->addAction(tr("Edit Old Revision"));
       connect(action, &QAction::triggered,
       [this, view, name, oldLine, oldBlob, commit] {
         view->openEditor(name, oldLine, oldBlob, commit);
       });
     }
 
-    // Connect button click to the first menu action.
     setEnabled(!menu->isEmpty() && !binary && !lfs);
-    connect(this, &EditButton::clicked, [menu] {
-      menu->actions().first()->trigger();
-    });
+    setPopupMode(ToolButtonPopupMode::InstantPopup);
 
     setMenu(menu);
   }
@@ -366,6 +365,13 @@ protected:
     painter.setPen(QPen(painter.pen().color(), 1, Qt::SolidLine, Qt::FlatCap));
     painter.drawLine(x - r + 1, y + r - 5, x - r + 5, y + r - 1);
     painter.drawLine(x + r - 6, y - r + 2, x + r - 2, y - r + 6);
+
+    // Draw menu indicator.
+    QPainterPath indicator;
+    indicator.moveTo(x + 3, y + 4.5);
+    indicator.lineTo(x + 5.5, y + 7);
+    indicator.lineTo(x + 8, y + 4.5);
+    painter.drawPath(indicator);
   }
 };
 
@@ -2263,7 +2269,9 @@ void DiffView::setDiff(const git::Diff &diff)
   if (diff.isStatusDiff()) {
     if (git::Reference head = repo.head()) {
       if (git::Commit commit = head.target()) {
-        git::Diff stagedDiff = repo.diffTreeToIndex(commit.tree());
+        bool ignoreWhitespace = Settings::instance()->isWhitespaceIgnored();
+        git::Diff stagedDiff =
+          repo.diffTreeToIndex(commit.tree(), git::Index(), ignoreWhitespace);
         for (int i = 0; i < stagedDiff.count(); ++i)
           mStagedPatches[stagedDiff.name(i)] = stagedDiff.patch(i);
       }

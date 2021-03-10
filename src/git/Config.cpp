@@ -8,7 +8,7 @@
 //
 
 #include "Config.h"
-#include "conf/Settings.h"
+#include <QStandardPaths>
 
 namespace git {
 
@@ -165,7 +165,13 @@ Config Config::appGlobal()
   if (git_config_new(&config))
     return Config();
 
-  QDir dir = Settings::userDir();
+  QDir dir =
+    QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+
+  // Create missing path.
+  if (!dir.exists())
+    dir.mkpath(dir.path());
+
   QByteArray path = dir.filePath(kConfigFile).toUtf8();
   if (git_config_add_file_ondisk(
         config, path, GIT_CONFIG_LEVEL_GLOBAL, nullptr, 0)) {

@@ -28,7 +28,6 @@
 #include <QNetworkReply>
 #include <QOperatingSystemVersion>
 #include <QSettings>
-#include <QSysInfo>
 #include <QTimer>
 #include <QTranslator>
 #include <QUrlQuery>
@@ -167,7 +166,10 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
   mTheme->polish(palette);
   this->setPalette(palette);
 
-  if (!parser.isSet("no-translation")) {
+  // Read translation settings
+  QSettings settings;
+  if ((!settings.value("translation/disable", false).toBool()) &&
+      (!parser.isSet("no-translation"))) {
     // Load translation files.
     QLocale locale;
     QDir l10n = Settings::l10nDir();
@@ -206,7 +208,7 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
   if (!dir.exists())
     dir.setPath("/Applications");
   dir.cd("Utilities/Terminal.app/Contents/Resources/Fonts");
-  foreach (const QString &name, dir.entryList({"SFMono-*.otf"}, QDir::Files))
+  foreach (const QString &name, dir.entryList({"SF*Mono-*.otf"}, QDir::Files))
     QFontDatabase::addApplicationFont(dir.filePath(name));
 
   // Create shared menu bar on Mac.
@@ -225,6 +227,9 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
   setWindowIcon(icon);
 #endif
 
+  // Set path to emoji description file.
+  git::Commit::setEmojiFile(Settings::confDir().filePath("emoji.json"));
+
   // Initialize git library.
   git::Repository::init();
 
@@ -236,7 +241,6 @@ Application::Application(int &argc, char **argv, bool haltOnParseError)
   });
 
   // Read tracking settings.
-  QSettings settings;
   settings.beginGroup("tracking");
   QByteArray tid(GITAHEAD_TRACKING_ID);
   if (!tid.isEmpty() && settings.value("enabled", true).toBool()) {
