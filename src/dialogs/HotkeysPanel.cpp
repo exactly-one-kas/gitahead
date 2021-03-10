@@ -122,6 +122,8 @@ private:
 
 class HotkeyModel : public QAbstractItemModel
 {
+  Q_OBJECT
+
 public:
   enum class ColumnIndex : int
   {
@@ -314,6 +316,8 @@ protected:
 
 class KeybindDialog : public QDialog
 {
+  Q_OBJECT
+
 public:
   KeybindDialog(QWidget *parent): QDialog(parent)
   {
@@ -455,3 +459,5 @@ void HotkeysPanel::keyPressEvent(QKeyEvent *e)
 
   QTreeView::keyPressEvent(e);
 }
+
+#include "HotkeysPanel.moc"

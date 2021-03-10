@@ -51,15 +51,17 @@ bool keyFile(QString &key, const QString &path = QString())
   }
 
   if (!dir.cd(".ssh"))
-    return "";
+    return false;
 
   foreach (const QString &kind, kKeyKinds) {
     QString name = QString("id_%1").arg(kind);
-    if (dir.exists(name))
-      return dir.absoluteFilePath(name);
+    if (dir.exists(name)) {
+      key = dir.absoluteFilePath(name);
+      return true;
+    }
   }
 
-  return "";
+  return false;
 }
 
 QString hostName(const QString &url)
@@ -306,9 +308,6 @@ int Remote::Callbacks::credentials(
       cbs->mAgentNames.insert(name);
       if (cbs->connectToAgent())
         return git_credential_ssh_key_from_agent(out, name);
-
-    } else if (error) {
-      log(error->message);
     }
 
     // Read SSH config file.
@@ -333,13 +332,6 @@ int Remote::Callbacks::credentials(
         if (!key.isEmpty())
           break;
       }
-    }
-
-    if (key.isEmpty()) {
-      key = keyFile();
-
-      if (cbs->mKeyFiles.contains(key))
-        key = "";
     }
 
     // Search for default keys.
